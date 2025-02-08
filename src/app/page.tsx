@@ -3,6 +3,8 @@
 
 import Head from 'next/head';
 import { useEffect, useRef } from 'react';
+import Image from 'next/image';
+import Navigation from '@/components/Navigation';
 
 export default function Home() {
   const iframeRef = useRef<HTMLIFrameElement>(null);
@@ -47,6 +49,17 @@ export default function Home() {
       <Head>
         <title>Page d&apos;accueil avec vidéo en arrière-plan</title>
       </Head>
+
+      <Navigation />
+
+      <Image
+        src="/images/digitaly_logo.png"
+        alt="Digitaly Logo"
+        width={150}
+        height={200}
+        className="absolute top-4 left-4 z-50 h-auto w-auto"
+        priority
+      />
 
       <div className="absolute inset-0">
         <div
