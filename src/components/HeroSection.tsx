@@ -30,10 +30,16 @@ const HeroSection = () => {
           rel: 0,
           playsinline: 1,
           playlist: 'KdFpPl_Rhz0',
+          disablekb: 1,
+          iv_load_policy: 3,
+          fs: 0,
+          enablejsapi: 0
         },
         events: {
           onReady: (event) => {
             event.target.playVideo();
+            const iframe = event.target.getIframe();
+            iframe.style.pointerEvents = 'none';
           },
         },
       });
@@ -53,7 +59,7 @@ const HeroSection = () => {
         priority
       />
 
-      <div className="absolute inset-0">
+      <div className="absolute inset-0 pointer-events-none">
         <div
           ref={iframeRef}
           className="w-full h-full scale-125"
