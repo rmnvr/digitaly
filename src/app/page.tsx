@@ -68,9 +68,6 @@ export default function Home() {
         />
       </div>
 
-      <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-        <h1 className="text-white text-4xl font-bold">Bienvenue sur ma page d&apos;accueil</h1>
-      </div>
     </div>
   );
 }
