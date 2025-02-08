@@ -11,19 +11,19 @@ const Navigation = () => {
       <div className="hidden md:flex justify-end items-center space-x-8 pr-8">
         <a
           href="#"
-          className="text-white hover:text-gray-300 transition-colors duration-200"
+          className="text-white relative transition-colors duration-300 hover:text-[#C93D39] after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-white after:transition-all after:duration-300 hover:after:w-full hover:after:bg-[#C93D39]"
         >
           Digitaly
         </a>
         <a
           href="#"
-          className="text-white hover:text-gray-300 transition-colors duration-200"
+          className="text-white relative transition-colors duration-300 hover:text-[#C93D39] after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-white after:transition-all after:duration-300 hover:after:w-full hover:after:bg-[#C93D39]"
         >
           Image de marque
         </a>
         <a
           href="#"
-          className="text-white hover:text-gray-300 transition-colors duration-200"
+          className="text-white relative transition-colors duration-300 hover:text-[#C93D39] after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-white after:transition-all after:duration-300 hover:after:w-full hover:after:bg-[#C93D39]"
         >
           Portfolio
         </a>
