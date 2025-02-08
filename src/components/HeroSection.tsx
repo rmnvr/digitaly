@@ -48,21 +48,27 @@ const HeroSection = () => {
 
   return (
     <div className="relative h-screen w-full overflow-hidden">
-      <Navigation />
-
-      <Image
-        src="/images/digitaly_logo.png"
-        alt="Digitaly Logo"
-        width={150}
-        height={200}
-        className="absolute top-4 left-4 z-50 h-auto w-auto"
-        priority
-      />
-
       <div className="absolute inset-0 pointer-events-none">
         <div
+
           ref={iframeRef}
-          className="w-full h-full scale-125"
+          className="absolute top-0 left-1/2 -translate-x-1/2 
+            w-[100%] h-screen 
+            scale-[300%] sm:scale-[200%] md:scale-[150%] lg:scale-[125%] object-cover"
+        />
+      </div>
+
+      <div className="absolute inset-0 flex flex-col items-center justify-center px-4 md:px-8">
+        <Navigation />
+
+        <Image
+          src="/images/digitaly_logo.png"
+          alt="Digitaly Logo"
+          width={150}
+          height={200}
+          className="absolute top-4 left-4 z-50 h-auto w-auto 
+            max-w-[100px] md:max-w-[150px]"
+          priority
         />
       </div>
     </div>
