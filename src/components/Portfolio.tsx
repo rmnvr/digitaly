@@ -1,37 +1,42 @@
-import React from 'react';
+'use client'
+
+import React, { useState } from 'react';
 import Script from 'next/script';
+import VideoThumbnail from './VideoThumbnail';
 
 const Portfolio = () => {
 
   const videos = [
-    'https://www.youtube.com/embed/GLvYkmyYcKY?modestbranding=1',
-    'https://www.youtube.com/embed/zfkLExgz6D8?modestbranding=1',
-    'https://www.youtube.com/embed/o_41BoRZsHE?modestbranding=1',
-    'https://www.youtube.com/embed/RWyRlp6scVQ?modestbranding=1',
-    'https://www.youtube.com/embed/MZdhjIkB-Rc?modestbranding=1',
-    'https://www.youtube.com/embed/yf19jCtVSRc?modestbranding=1',
+    'GLvYkmyYcKY',
+    'zfkLExgz6D8',
+    'o_41BoRZsHE',
+    'RWyRlp6scVQ',
+    'MZdhjIkB-Rc',
+    'yf19jCtVSRc',
   ];
 
+  const [activeVideo, setActiveVideo] = useState<string | null>(null);
+
+  const handleVideoClick = (videoId: string) => {
+    setActiveVideo(videoId);
+  };
+
   return (
-    <div className="portfolio">
+    <div className="portfolio mb-8">
       <div className="flex flex-wrap justify-evenly gap-4">
-        {videos.map((video, index) => (
-          <div key={index} className="video-container">
-            <Script
-              src="https://www.youtube.com/iframe_api"
-              strategy="lazyOnload"
-            />
-            <iframe
-              width="450"
-              height="280"
-              src={video}
-              title={`Video ${index + 1}`}
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            />
-          </div>
+        {videos.map((videoId, index) => (
+          <VideoThumbnail
+            key={index}
+            videoId={videoId}
+            isActive={activeVideo === videoId}
+            onClick={() => handleVideoClick(videoId)}
+          />
         ))}
       </div>
+      <Script
+        src="https://www.youtube.com/iframe_api"
+        strategy="lazyOnload"
+      />
     </div>
   );
 };
