@@ -22,6 +22,7 @@ interface YT {
           target: {
             playVideo: () => void;
             getIframe: () => HTMLIFrameElement;
+            getVideoData: () => { title: string };
           }
         }) => void;
       };
@@ -37,7 +38,7 @@ interface YT {
 declare global {
   interface Window {
     YT: YT;
-    onYouTubeIframeAPIReady: () => void;
+    onYouTubeIframeAPIReady?: () => void;
   }
 }
 
