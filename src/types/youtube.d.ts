@@ -12,9 +12,19 @@ interface YT {
         rel?: number;
         playsinline?: number;
         playlist?: string;
+        disablekb?: number;
+        iv_load_policy?: number;
+        fs?: number;
+        enablejsapi?: number;
       };
       events?: {
-        onReady?: (event: { target: { playVideo: () => void } }) => void;
+        onReady?: (event: {
+          target: {
+            playVideo: () => void;
+            getIframe: () => HTMLIFrameElement;
+            getVideoData: () => { title: string };
+          }
+        }) => void;
       };
     }): YT.Player;
   } & {
@@ -28,7 +38,7 @@ interface YT {
 declare global {
   interface Window {
     YT: YT;
-    onYouTubeIframeAPIReady: () => void;
+    onYouTubeIframeAPIReady?: () => void;
   }
 }
 
