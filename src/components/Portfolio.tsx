@@ -1,21 +1,62 @@
 'use client'
 
-import React, { useState } from 'react';
-import Script from 'next/script';
+import React, { useState, useEffect, useMemo } from 'react';
 import VideoThumbnail from './VideoThumbnail';
 
-const Portfolio = () => {
+interface VideoInfo {
+  id: string;
+  title: string;
+  description: string;
+}
 
-  const videos = [
+const Portfolio = () => {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const videoIds = useMemo(() => [
     'GLvYkmyYcKY',
     'zfkLExgz6D8',
     'o_41BoRZsHE',
     'RWyRlp6scVQ',
     'MZdhjIkB-Rc',
     'yf19jCtVSRc',
-  ];
+  ], []);
 
   const [activeVideo, setActiveVideo] = useState<string | null>(null);
+  const [videos, setVideos] = useState<VideoInfo[]>([]);
+
+  useEffect(() => {
+    if (!mounted) return;
+
+    const fetchVideoInfo = async () => {
+      try {
+        const response = await fetch(`/api/youtube?videoIds=${videoIds.join(',')}`);
+        const data = await response.json();
+
+        // Vérification que data est un tableau valide
+        if (!Array.isArray(data)) {
+          console.error('Invalid API response format:', data);
+          setVideos(videoIds.map(id => ({ id, title: '', description: '' })));
+          return;
+        }
+
+        setVideos(data);
+      } catch (error) {
+        console.error('Error fetching video info:', error);
+        // Fallback avec juste les IDs si l'API échoue
+        setVideos(videoIds.map(id => ({ id, title: '', description: '' })));
+      }
+    };
+
+    fetchVideoInfo();
+  }, [videoIds, mounted]);
+
+  if (!mounted) {
+    return null; // ou un placeholder/skeleton
+  }
 
   const handleVideoClick = (videoId: string) => {
     setActiveVideo(videoId);
@@ -24,19 +65,17 @@ const Portfolio = () => {
   return (
     <div className="portfolio mb-8">
       <div className="flex flex-wrap justify-evenly gap-4">
-        {videos.map((videoId, index) => (
+        {videos.length > 0 && videos.map((video, index) => (
           <VideoThumbnail
             key={index}
-            videoId={videoId}
-            isActive={activeVideo === videoId}
-            onClick={() => handleVideoClick(videoId)}
+            videoId={video.id}
+            title={video.title}
+            description={video.description}
+            isActive={activeVideo === video.id}
+            onClick={() => handleVideoClick(video.id)}
           />
         ))}
       </div>
-      <Script
-        src="https://www.youtube.com/iframe_api"
-        strategy="lazyOnload"
-      />
     </div>
   );
 };

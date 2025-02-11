@@ -6,13 +6,16 @@ import Image from 'next/image';
 interface VideoThumbnailProps {
   videoId: string;
   isActive: boolean;
+  title: string;
+  description: string;
   onClick: () => void;
 }
 
-const VideoThumbnail: React.FC<VideoThumbnailProps> = ({ videoId, isActive, onClick }) => {
+const VideoThumbnail: React.FC<VideoThumbnailProps> = ({ videoId, isActive, title, description, onClick }) => {
   const [isMounted, setIsMounted] = useState(false);
   const [isClicked, setIsClicked] = useState(false);
   const [shouldRender, setShouldRender] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     setIsMounted(true);
@@ -22,13 +25,29 @@ const VideoThumbnail: React.FC<VideoThumbnailProps> = ({ videoId, isActive, onCl
     if (!isActive) {
       setShouldRender(true);
       setIsClicked(false);
+      setError(null);
     }
   }, [isActive]);
 
   const handleClick = () => {
-    setIsClicked(true);
-    setTimeout(onClick, 300);
+    try {
+      setIsClicked(true);
+      setTimeout(onClick, 300);
+    } catch (err) {
+      setError("Une erreur s'est produite lors du chargement de la vidéo");
+      console.error("Erreur:", err);
+    }
   };
+
+  if (error) {
+    return (
+      <div className="video-container mt-8 flex justify-center items-center relative">
+        <div className="text-red-500 p-4 border border-red-300 rounded">
+          {error}
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="video-container mt-8 flex justify-center items-center relative">
@@ -64,6 +83,8 @@ const VideoThumbnail: React.FC<VideoThumbnailProps> = ({ videoId, isActive, onCl
             className="object-cover w-full h-full"
             style={{ cursor: 'pointer' }}
           />
+          <h3>{title}</h3>
+          <p>{description}</p>
         </div>
       )}
     </div>
