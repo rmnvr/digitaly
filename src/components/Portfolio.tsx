@@ -7,6 +7,14 @@ interface VideoInfo {
   id: string;
   title: string;
   description: string;
+  duration?: string;
+  viewCount?: string;
+  publishedAt?: string;
+  thumbnails?: {
+    default: { url: string; width: number; height: number };
+    medium: { url: string; width: number; height: number };
+    high: { url: string; width: number; height: number };
+  };
 }
 
 const Portfolio = () => {
