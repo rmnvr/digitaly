@@ -18,6 +18,23 @@ interface YouTubeVideo {
   };
 }
 
+type VideoItem = {
+  id: string;
+  snippet: {
+    title: string;
+    description: string;
+    publishedAt: string;
+    thumbnails: Record<string, { url: string; width?: number; height?: number }>;
+  };
+  contentDetails: {
+    duration: string;
+  };
+  statistics: {
+    viewCount: string;
+  };
+};
+
+
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const videoIds = searchParams.get('videoIds');
@@ -39,7 +56,7 @@ export async function GET(request: Request) {
 
     const data = await response.json();
 
-    const videos: YouTubeVideo[] = data.items.map((item: any) => ({
+    const videos: YouTubeVideo[] = data.items.map((item: VideoItem) => ({
       id: item.id,
       title: item.snippet.title,
       description: item.snippet.description,
