@@ -72,16 +72,17 @@ const Portfolio = () => {
 
   return (
     <div className="portfolio mb-8">
-      <div className="flex flex-wrap justify-evenly gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 w-full">
         {videos.length > 0 && videos.map((video, index) => (
-          <VideoThumbnail
-            key={index}
-            videoId={video.id}
-            title={video.title}
-            description={video.description}
-            isActive={activeVideo === video.id}
-            onClick={() => handleVideoClick(video.id)}
-          />
+            <div key={index} className="w-full">
+              <VideoThumbnail
+                  videoId={video.id}
+                  title={video.title}
+                  description={video.description}
+                  isActive={activeVideo === video.id}
+                  onClick={() => handleVideoClick(video.id)}
+              />
+            </div>
         ))}
       </div>
     </div>
