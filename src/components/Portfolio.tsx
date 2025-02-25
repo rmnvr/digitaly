@@ -20,7 +20,6 @@ interface VideoInfo {
 const Portfolio = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isHovered, setIsHovered] = useState(false);
-  const [activeVideo, setActiveVideo] = useState<string | null>(null);
   const [videos, setVideos] = useState<VideoInfo[]>([]);
   const [isClient, setIsClient] = useState(false);
   const transitionInProgress = useRef(false);
@@ -103,53 +102,47 @@ const Portfolio = () => {
     };
   }, [isHovered, isClient, videoIds.length]);
 
-  const handleVideoClick = (videoId: string) => {
-    setActiveVideo(videoId);
-  };
-
   if (!isClient) {
     return (
-        <div className="portfolio mb-8 overflow-hidden">
-          <div className="flex gap-4 overflow-x-hidden w-full">
-            {videoIds.map((id, index) => (
-                <div
-                    key={index}
-                    className="flex-none"
-                    style={{ width: '350px' }}
-                >
-                  <div className="w-[350px] h-[230px] bg-gray-200 animate-pulse" />
-                </div>
-            ))}
-          </div>
+      <div className="portfolio my-[200px] overflow-hidden">
+        <div className="flex gap-4 overflow-x-hidden w-full">
+          {videoIds.map((id, index) => (
+            <div
+              key={index}
+              className="flex-none"
+              style={{ width: '350px' }}
+            >
+              <div className="w-[350px] h-[230px] bg-gray-200 animate-pulse" />
+            </div>
+          ))}
         </div>
+      </div>
     );
   }
 
   return (
-      <div className="portfolio mb-8 overflow-hidden">
-        <div
-            ref={containerRef}
-            className="flex gap-4 overflow-x-hidden w-full"
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
-        >
-          {videos.map((video, index) => (
-              <div
-                  key={index}
-                  className="flex-none"
-                  style={{ width: '350px' }}
-              >
-                <VideoThumbnail
-                    videoId={video.id}
-                    title={video.title}
-                    description={video.description}
-                    isActive={activeVideo === video.id}
-                    onClick={() => handleVideoClick(video.id)}
-                />
-              </div>
-          ))}
-        </div>
+    <div className="portfolio my-[200px] overflow-hidden">
+      <div
+        ref={containerRef}
+        className="flex gap-4 overflow-x-hidden w-full"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
+        {videos.map((video, index) => (
+          <div
+            key={index}
+            className="flex-none"
+            style={{ width: '350px' }}
+          >
+            <VideoThumbnail
+              videoId={video.id}
+              title={video.title}
+              description={video.description}
+            />
+          </div>
+        ))}
       </div>
+    </div>
   );
 };
 
