@@ -6,30 +6,13 @@ import VideoLightbox from './VideoLightbox';
 
 interface VideoThumbnailProps {
   videoId: string;
-  isActive: boolean;
   title: string;
   description: string;
-  onClick: () => void;
 }
 
-const VideoThumbnail: React.FC<VideoThumbnailProps> = ({ videoId, isActive, title, description, onClick }) => {
-  const [isMounted, setIsMounted] = useState(false);
-  const [isClicked, setIsClicked] = useState(false);
-  const [shouldRender, setShouldRender] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+const VideoThumbnail: React.FC<VideoThumbnailProps> = ({ videoId, title, description }) => {
   const [showLightbox, setShowLightbox] = useState(false);
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
-  useEffect(() => {
-    if (!isActive) {
-      setShouldRender(true);
-      setIsClicked(false);
-      setError(null);
-    }
-  }, [isActive]);
+  const [isHovered, setIsHovered] = useState(false);
 
   useEffect(() => {
     if (showLightbox) {
@@ -43,112 +26,74 @@ const VideoThumbnail: React.FC<VideoThumbnailProps> = ({ videoId, isActive, titl
     };
   }, [showLightbox]);
 
-  const handleClick = () => {
-    try {
-      setIsClicked(true);
-      setTimeout(onClick, 300);
-    } catch (err) {
-      setError("Une erreur s'est produite lors du chargement de la vidéo");
-      console.error("Erreur:", err);
-    }
-  };
-
   const handleInfoClick = (e: React.MouseEvent) => {
     e.stopPropagation();
     setShowLightbox(true);
   };
 
-  // Composant pour le titre et le bouton d'info, réutilisé dans les deux états
-  const TitleAndInfoButton = () => (
-      <div className="flex items-center gap-2 mt-2">
-        <h3 className="flex-1">{title}</h3>
-        <button
+  return (
+    <>
+      <div className="video-container relative">
+        <div className="flex flex-col">
+          <div
+            className="relative group cursor-pointer"
             onClick={handleInfoClick}
-            className="p-2 rounded-full hover:bg-gray-100 transition-colors duration-200"
-            aria-label="Plus d'informations"
-        >
-          <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="w-5 h-5"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
           >
-            <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z"
-            />
-          </svg>
-        </button>
-      </div>
-  );
+            <div className="relative w-[350px] h-[230px] overflow-hidden rounded-xl">
+              {/* GIF toujours présent mais avec opacité conditionnelle */}
+              <div className={`absolute inset-0 transition-opacity duration-500 ${isHovered ? 'opacity-100' : 'opacity-0'
+                }`}>
+                <Image
+                  src="https://c.tenor.com/Jo1xLhLKfe8AAAAd/tenor.gif"
+                  alt="Power GIF"
+                  width={360}
+                  height={250}
+                  className="object-cover w-full h-full"
+                  objectFit='cover'
+                />
+              </div>
 
-  if (error) {
-    return (
-        <div className="video-container mt-8 flex justify-center items-center relative">
-          <div className="text-red-500 p-4 border border-red-300 rounded">
-            {error}
+              {/* Image statique toujours présente mais avec opacité conditionnelle */}
+              <div className={`absolute inset-0 transition-opacity duration-500 ${isHovered ? 'opacity-0' : 'opacity-100'
+                }`}>
+                <Image
+                  src={`https://img.youtube.com/vi/${videoId}/hqdefault.jpg`}
+                  alt={`Thumbnail for video ${videoId}`}
+                  width={360}
+                  height={250}
+                  className="object-cover w-full h-full scale-125"
+                  objectFit='cover'
+                />
+              </div>
+
+              {/* Overlay sombre */}
+              <div className={`absolute inset-0 bg-black/40 transition-opacity duration-300 ${isHovered ? 'opacity-0' : 'opacity-100'
+                }`} />
+
+              {/* Bouton play et texte combinés */}
+              <div className={`absolute inset-0 flex flex-row items-end justify-center transition-opacity duration-300 ${isHovered ? 'opacity-0' : 'opacity-100'
+                }`} style={{ paddingBottom: '20px' }}>
+                <div className="bg-transparent border border-white rounded-full w-6 h-6 flex items-center justify-center mr-2">
+                  <div className="w-0 h-0 border-t-[3px] border-t-transparent border-l-[6px] border-l-white border-b-[3px] border-b-transparent" />
+                </div>
+                {/* Texte */}
+                <h3 className="text-white text-sm font-medium tracking-wide">{title}</h3>
+              </div>
+            </div>
           </div>
         </div>
-    );
-  }
+      </div>
 
-  return (
-      <>
-        <div className="video-container mt-8 flex flex-col justify-center items-center relative">
-          {isActive && isMounted && shouldRender ? (
-              <div className="flex flex-col">
-                <div className="opacity-0 animate-[fadeIn_0.3s_ease-in_forwards]">
-                  <iframe
-                      width="350"
-                      height="230"
-                      src={`https://www.youtube.com/embed/${videoId}?autoplay=1`}
-                      title={`Video ${videoId}`}
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                      style={{
-                        position: 'relative',
-                        zIndex: 1,
-                      }}
-                  />
-                </div>
-                <TitleAndInfoButton />
-              </div>
-          ) : (
-              <div
-                  className={`relative flex flex-col ${isClicked ? 'animate-[fadeOut_0.3s_ease-out_forwards]' : ''}`}
-              >
-                <div
-                    className="relative w-[350px] h-[230px]"
-                    onClick={handleClick}
-                >
-                  <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                    <div className="w-0 h-0 border-t-[20px] border-t-transparent border-l-[35px] border-l-white/80 border-b-[20px] border-b-transparent" />
-                  </div>
-                  <Image
-                      src={`https://img.youtube.com/vi/${videoId}/hqdefault.jpg`}
-                      alt={`Thumbnail for video ${videoId}`}
-                      width={350}
-                      height={230}
-                      className="object-cover w-full h-full"
-                      style={{ cursor: 'pointer' }}
-                  />
-                </div>
-                <TitleAndInfoButton />
-              </div>
-          )}
-        </div>
-
-        <VideoLightbox
-            isOpen={showLightbox}
-            onClose={() => setShowLightbox(false)}
-            videoId={videoId}
-            title={title}
-            description={description}
-        />
-      </>
+      <VideoLightbox
+        isOpen={showLightbox}
+        onClose={() => setShowLightbox(false)}
+        videoId={videoId}
+        title={title}
+        description={description}
+      />
+    </>
   );
 };
 

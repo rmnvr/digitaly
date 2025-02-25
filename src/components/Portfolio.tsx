@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
 import VideoThumbnail from './VideoThumbnail';
 
 interface VideoInfo {
@@ -18,11 +18,12 @@ interface VideoInfo {
 }
 
 const Portfolio = () => {
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [isHovered, setIsHovered] = useState(false);
+  const [videos, setVideos] = useState<VideoInfo[]>([]);
+  const [isClient, setIsClient] = useState(false);
+  const transitionInProgress = useRef(false);
+  const lastTimestamp = useRef(0);
 
   const videoIds = useMemo(() => [
     'GLvYkmyYcKY',
@@ -33,56 +34,112 @@ const Portfolio = () => {
     'yf19jCtVSRc',
   ], []);
 
-  const [activeVideo, setActiveVideo] = useState<string | null>(null);
-  const [videos, setVideos] = useState<VideoInfo[]>([]);
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   useEffect(() => {
-    if (!mounted) return;
+    if (!isClient) return;
 
     const fetchVideoInfo = async () => {
       try {
-        const response = await fetch(`/api/youtube?videoIds=${videoIds.join(',')}`);
+        const response = await fetch(`/api/youtube?videoIds=${videoIds.join(',')}&modestbranding=1&controls=0&rel=0&showinfo=0`);
         const data = await response.json();
 
-        // Vérification que data est un tableau valide
         if (!Array.isArray(data)) {
           console.error('Invalid API response format:', data);
           setVideos(videoIds.map(id => ({ id, title: '', description: '' })));
           return;
         }
 
-        setVideos(data);
+        setVideos([...data, ...data, ...data, ...data]);
       } catch (error) {
         console.error('Error fetching video info:', error);
-        // Fallback avec juste les IDs si l'API échoue
         setVideos(videoIds.map(id => ({ id, title: '', description: '' })));
       }
     };
 
     fetchVideoInfo();
-  }, [videoIds, mounted]);
+  }, [videoIds, isClient]);
 
-  if (!mounted) {
-    return null; // ou un placeholder/skeleton
+  useEffect(() => {
+    if (!containerRef.current || !isClient) return;
+
+    const container = containerRef.current;
+    let animationFrameId: number;
+    const NORMAL_SPEED = 2;
+    const HOVER_SPEED = 1.05;
+    const SINGLE_SET_WIDTH = videoIds.length * (350 + 16);
+
+    const animate = (timestamp: number) => {
+      if (!lastTimestamp.current) {
+        lastTimestamp.current = timestamp;
+      }
+
+      const deltaTime = timestamp - lastTimestamp.current;
+      lastTimestamp.current = timestamp;
+      if (!transitionInProgress.current) {
+        const speed = isHovered ? HOVER_SPEED : NORMAL_SPEED;
+        const scrollAmount = (speed * deltaTime) / 16; // Normalisation pour 60fps
+        container.scrollLeft += scrollAmount;
+        if (container.scrollLeft >= SINGLE_SET_WIDTH) {
+          transitionInProgress.current = true;
+          container.scrollLeft = 0;
+          setTimeout(() => {
+            transitionInProgress.current = false;
+          }, 50);
+        }
+      }
+
+      animationFrameId = requestAnimationFrame(animate);
+    };
+
+    animationFrameId = requestAnimationFrame(animate);
+
+    return () => {
+      cancelAnimationFrame(animationFrameId);
+      lastTimestamp.current = 0;
+    };
+  }, [isHovered, isClient, videoIds.length]);
+
+  if (!isClient) {
+    return (
+      <div className="portfolio my-[200px] overflow-hidden">
+        <div className="flex gap-4 overflow-x-hidden w-full">
+          {videoIds.map((id, index) => (
+            <div
+              key={index}
+              className="flex-none"
+              style={{ width: '350px' }}
+            >
+              <div className="w-[350px] h-[230px] bg-gray-200 animate-pulse" />
+            </div>
+          ))}
+        </div>
+      </div>
+    );
   }
 
-  const handleVideoClick = (videoId: string) => {
-    setActiveVideo(videoId);
-  };
-
   return (
-    <div className="portfolio mb-8">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 w-full">
-        {videos.length > 0 && videos.map((video, index) => (
-            <div key={index} className="w-full">
-              <VideoThumbnail
-                  videoId={video.id}
-                  title={video.title}
-                  description={video.description}
-                  isActive={activeVideo === video.id}
-                  onClick={() => handleVideoClick(video.id)}
-              />
-            </div>
+    <div className="portfolio my-[200px] overflow-hidden">
+      <div
+        ref={containerRef}
+        className="flex gap-4 overflow-x-hidden w-full"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
+        {videos.map((video, index) => (
+          <div
+            key={index}
+            className="flex-none"
+            style={{ width: '350px' }}
+          >
+            <VideoThumbnail
+              videoId={video.id}
+              title={video.title}
+              description={video.description}
+            />
+          </div>
         ))}
       </div>
     </div>
