@@ -22,6 +22,8 @@ const Portfolio = () => {
   const [isHovered, setIsHovered] = useState(false);
   const [videos, setVideos] = useState<VideoInfo[]>([]);
   const [isClient, setIsClient] = useState(false);
+  const [isMobile, setIsMobile] = useState(false)
+
   const transitionInProgress = useRef(false);
   const lastTimestamp = useRef(0);
 
@@ -34,12 +36,24 @@ const Portfolio = () => {
     'yf19jCtVSRc',
   ], []);
 
-  const isMobile = window.innerWidth < 1024; // Détermine si l'écran est mobile
   const NORMAL_SPEED = isMobile ? 1.05 : 2; // Vitesse normale ajustée pour mobile
   const HOVER_SPEED = 1.05; // Vitesse de survol ajustée pour mobile
 
   useEffect(() => {
     setIsClient(true);
+  }, []);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 1024);
+    };
+
+    handleResize(); // Initial check
+    window.addEventListener('resize', handleResize); // Add event listener
+
+    return () => {
+      window.removeEventListener('resize', handleResize); // Cleanup
+    };
   }, []);
 
   useEffect(() => {

@@ -13,7 +13,20 @@ interface VideoThumbnailProps {
 const VideoThumbnail: React.FC<VideoThumbnailProps> = ({ videoId, title, description }) => {
   const [showLightbox, setShowLightbox] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
-  const isMobile = window.innerWidth < 1024; // Détermine si l'écran est mobile
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 1024);
+    };
+
+    handleResize(); // Initial check
+    window.addEventListener('resize', handleResize); // Add event listener
+
+    return () => {
+      window.removeEventListener('resize', handleResize); // Cleanup
+    };
+  }, []);
 
   useEffect(() => {
     if (showLightbox) {

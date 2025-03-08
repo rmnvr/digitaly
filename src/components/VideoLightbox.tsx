@@ -1,5 +1,7 @@
 'use client'
 
+import { useEffect, useState } from "react";
+
 interface VideoLightboxProps {
     isOpen: boolean;
     onClose: () => void;
@@ -15,8 +17,23 @@ const VideoLightbox: React.FC<VideoLightboxProps> = ({
     title,
     description
 }) => {
+    const [isMobile, setIsMobile] = useState(false)
+
     const defaultDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.";
-    const isMobile = window.innerWidth < 1024; // Détermine si l'écran est mobile
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth < 1024);
+        };
+
+        handleResize(); // Initial check
+        window.addEventListener('resize', handleResize); // Add event listener
+
+        return () => {
+            window.removeEventListener('resize', handleResize); // Cleanup
+        };
+    }, []);
+
     if (!isOpen) return null;
 
     return (
