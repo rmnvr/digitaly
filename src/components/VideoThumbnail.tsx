@@ -13,6 +13,20 @@ interface VideoThumbnailProps {
 const VideoThumbnail: React.FC<VideoThumbnailProps> = ({ videoId, title, description }) => {
   const [showLightbox, setShowLightbox] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 1024);
+    };
+
+    handleResize(); // Initial check
+    window.addEventListener('resize', handleResize); // Add event listener
+
+    return () => {
+      window.removeEventListener('resize', handleResize); // Cleanup
+    };
+  }, []);
 
   useEffect(() => {
     if (showLightbox) {
@@ -42,20 +56,22 @@ const VideoThumbnail: React.FC<VideoThumbnailProps> = ({ videoId, title, descrip
             onMouseLeave={() => setIsHovered(false)}
           >
             <div className="relative w-[350px] h-[230px] overflow-hidden rounded-xl">
-              {/* GIF toujours présent mais avec opacité conditionnelle */}
-              <div className={`absolute inset-0 transition-opacity duration-500 ${isHovered ? 'opacity-100' : 'opacity-0'
-                }`}>
-                <Image
-                  src="https://c.tenor.com/Jo1xLhLKfe8AAAAd/tenor.gif"
-                  alt="Power GIF"
-                  width={360}
-                  height={250}
-                  className="object-cover w-full h-full"
-                  objectFit='cover'
-                />
-              </div>
+              {/* GIF uniquement sur les écrans non mobiles */}
+              {!isMobile && (
+                <div className={`absolute inset-0 transition-opacity duration-500 ${isHovered ? 'opacity-100' : 'opacity-0'
+                  }`}>
+                  <Image
+                    src="https://c.tenor.com/Jo1xLhLKfe8AAAAd/tenor.gif"
+                    alt="Power GIF"
+                    width={360}
+                    height={250}
+                    className="object-cover w-full h-full"
+                    objectFit='cover'
+                  />
+                </div>
+              )}
 
-              {/* Image statique toujours présente mais avec opacité conditionnelle */}
+              {/* Image statique toujours présente */}
               <div className={`absolute inset-0 transition-opacity duration-500 ${isHovered ? 'opacity-0' : 'opacity-100'
                 }`}>
                 <Image
@@ -63,13 +79,13 @@ const VideoThumbnail: React.FC<VideoThumbnailProps> = ({ videoId, title, descrip
                   alt={`Thumbnail for video ${videoId}`}
                   width={360}
                   height={250}
-                  className="object-cover w-full h-full scale-125"
+                  className="object-cover w-full h-full scale-125 filter brightness-110 saturate-125"
                   objectFit='cover'
                 />
               </div>
 
-              {/* Overlay sombre */}
-              <div className={`absolute inset-0 bg-black/40 transition-opacity duration-300 ${isHovered ? 'opacity-0' : 'opacity-100'
+              {/* Overlay sombre dégradé */}
+              <div className={`absolute inset-0 bg-gradient-to-t from-black/80 to-transparent to-30% transition-opacity duration-300 ${isHovered ? 'opacity-0' : 'opacity-100'
                 }`} />
 
               {/* Bouton play et texte combinés */}
