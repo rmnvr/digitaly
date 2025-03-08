@@ -34,6 +34,10 @@ const Portfolio = () => {
     'yf19jCtVSRc',
   ], []);
 
+  const isMobile = window.innerWidth < 1024; // Détermine si l'écran est mobile
+  const NORMAL_SPEED = isMobile ? 1.05 : 2; // Vitesse normale ajustée pour mobile
+  const HOVER_SPEED = 1.05; // Vitesse de survol ajustée pour mobile
+
   useEffect(() => {
     setIsClient(true);
   }, []);
@@ -67,8 +71,6 @@ const Portfolio = () => {
 
     const container = containerRef.current;
     let animationFrameId: number;
-    const NORMAL_SPEED = 2;
-    const HOVER_SPEED = 1.05;
     const SINGLE_SET_WIDTH = videoIds.length * (350 + 16);
 
     const animate = (timestamp: number) => {
