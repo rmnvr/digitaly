@@ -47,7 +47,7 @@ const VideoThumbnail: React.FC<VideoThumbnailProps> = ({ videoId, title, descrip
 
   return (
     <>
-      <div className="video-container relative">
+      <div className="relative">
         <div className="flex flex-col">
           <div
             className="relative group cursor-pointer"
