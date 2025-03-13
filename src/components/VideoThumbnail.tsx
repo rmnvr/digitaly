@@ -8,9 +8,10 @@ interface VideoThumbnailProps {
   videoId: string;
   title: string;
   description: string;
+  preventClick?: boolean;
 }
 
-const VideoThumbnail: React.FC<VideoThumbnailProps> = ({ videoId, title, description }) => {
+const VideoThumbnail: React.FC<VideoThumbnailProps> = ({ videoId, title, description, preventClick }) => {
   const [showLightbox, setShowLightbox] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [isMobile, setIsMobile] = useState(false)
@@ -41,6 +42,10 @@ const VideoThumbnail: React.FC<VideoThumbnailProps> = ({ videoId, title, descrip
   }, [showLightbox]);
 
   const handleInfoClick = (e: React.MouseEvent) => {
+    if (preventClick) {
+      e.preventDefault();
+      return;
+    }
     e.stopPropagation();
     setShowLightbox(true);
   };
