@@ -1,0 +1,83 @@
+'use client';
+
+import Link from 'next/link';
+import { FaInstagram, FaLinkedinIn } from 'react-icons/fa';
+
+const Footer = () => {
+  return (
+    <footer className="bg-black text-white py-16 mt-12">
+      <div className="container mx-auto px-4">
+        <div className='flex flex-col lg:flex-row lg:justify-between gap-12'>
+          <div className="flex flex-col md:grid md:grid-cols-3 gap-8">
+            <div>
+              <h3 className="text-lg font-bold mb-4">UNE COLLABORATION ?</h3>
+              <p className="mb-2">Contactez-nous sur</p>
+              <a
+                href="mailto:hello@izhak.fr"
+                className="text-white hover:text-gray-300 font-bold"
+              >
+                mail@mail.fr
+              </a>
+            </div>
+
+            <div>
+              <h3 className="text-lg font-bold mb-4">NOUS REJOINDRE</h3>
+              <p className="mb-2">CV + infos sur</p>
+              <a
+                href="mailto:job@izhak.fr"
+                className="text-white hover:text-gray-300 font-bold"
+              >
+                mail@mail.fr
+              </a>
+            </div>
+
+            <div>
+              <h3 className="text-lg font-bold mb-4">Sevenans</h3>
+              <p>6B 6 Route de Belfort</p>
+              <p>90400 Sevenans</p>
+              <a
+                href="tel:+33752622938"
+                className="block mt-2 hover:text-gray-300"
+              >
+                +33 (0)6 66 66 66 66
+              </a>
+            </div>
+          </div>
+
+          <div className="flex flex-col gap-6">
+            <div className="flex gap-2 lg:gap-6">
+              {/* <Link href="https://facebook.com" className="hover:text-gray-300">
+                <FaFacebookF size={20} />
+              </Link> */}
+              {/* <Link href="https://twitter.com" className="hover:text-gray-300">
+                <FaTwitter size={20} />
+              </Link> */}
+              <Link href="https://instagram.com" className="hover:text-gray-300">
+                <FaInstagram size={20} />
+              </Link>
+              <Link href="https://linkedin.com" className="hover:text-gray-300">
+                <FaLinkedinIn size={20} />
+              </Link>
+            </div>
+
+            {/* Liens légaux */}
+            <div className="flex flex-col gap-2 text-sm">
+              <span>© DIGITALY 2025</span>
+              <Link href="/mentions-legales" className="hover:text-gray-300">
+                MENTIONS LÉGALES
+              </Link>
+              <Link href="/confidentialite" className="hover:text-gray-300">
+                POLITIQUE DE CONFIDENTIALITÉ
+              </Link>
+              <Link href="/cgv" className="hover:text-gray-300">
+                CGV
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+};
+
+export default Footer;

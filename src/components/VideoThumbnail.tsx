@@ -77,7 +77,7 @@ const VideoThumbnail: React.FC<VideoThumbnailProps> = ({ videoId, title, descrip
               )}
 
               {/* Image statique toujours présente */}
-              <div className={`absolute inset-0 transition-opacity duration-500 ${isHovered ? 'opacity-0' : 'opacity-100'
+              <div className={`absolute inset-0 transition-opacity duration-500 ${(!isMobile && isHovered) ? 'opacity-0' : 'opacity-100'
                 }`}>
                 <Image
                   src={`https://img.youtube.com/vi/${videoId}/hqdefault.jpg`}
@@ -94,7 +94,7 @@ const VideoThumbnail: React.FC<VideoThumbnailProps> = ({ videoId, title, descrip
                 }`} />
 
               {/* Bouton play et texte combinés */}
-              <div className={`absolute inset-0 flex flex-row items-end justify-center transition-opacity duration-300 ${isHovered ? 'opacity-0' : 'opacity-100'
+              <div className={`absolute inset-0 flex flex-row items-end justify-center transition-opacity duration-300 ${(!isMobile && isHovered) ? 'opacity-0' : 'opacity-100'
                 }`} style={{ paddingBottom: '20px' }}>
                 <div className="bg-transparent border border-white rounded-full w-6 h-6 flex items-center justify-center mr-2">
                   <div className="w-0 h-0 border-t-[3px] border-t-transparent border-l-[6px] border-l-white border-b-[3px] border-b-transparent" />
