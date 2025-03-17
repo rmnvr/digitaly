@@ -2,9 +2,9 @@
 'use client';
 
 import HeroSection from '@/components/HeroSection';
-import ProductSection from '@/components/ProductSection';
 import Portfolio from '@/components/Portfolio';
 import MissionSection from '@/components/MissionSection';
+import Footer from '@/components/Footer';
 
 export default function Home() {
   return (
@@ -12,7 +12,7 @@ export default function Home() {
       <HeroSection />
       <MissionSection />
       <Portfolio />
-      <ProductSection />
+      <Footer />
     </main>
   );
 }

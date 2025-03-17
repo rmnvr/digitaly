@@ -198,7 +198,7 @@ const Portfolio = () => {
   }
 
   return (
-    <div className="portfolio overflow-hidden">
+    <div className="portfolio overflow-hidden mb-20">
       <div
         ref={containerRef}
         className="flex gap-4 overflow-x-hidden w-full cursor-grab active:cursor-grabbing"
