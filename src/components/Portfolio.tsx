@@ -181,7 +181,7 @@ const Portfolio = () => {
 
   if (!isClient) {
     return (
-      <div className="portfolio my-[200px] overflow-hidden">
+      <div className="portfolio overflow-hidden">
         <div className="flex gap-4 overflow-x-hidden w-full">
           {videoIds.map((id, index) => (
             <div
@@ -198,7 +198,7 @@ const Portfolio = () => {
   }
 
   return (
-    <div className="portfolio my-[200px] overflow-hidden">
+    <div className="portfolio overflow-hidden">
       <div
         ref={containerRef}
         className="flex gap-4 overflow-x-hidden w-full cursor-grab active:cursor-grabbing"
