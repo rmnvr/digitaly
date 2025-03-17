@@ -20,9 +20,15 @@ interface VideoInfo {
 const Portfolio = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isHovered, setIsHovered] = useState(false);
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [scrollLeft, setScrollLeft] = useState(0);
   const [videos, setVideos] = useState<VideoInfo[]>([]);
   const [isClient, setIsClient] = useState(false);
   const [isMobile, setIsMobile] = useState(false)
+  const dragStartTime = useRef<number>(0);
+  const dragDistance = useRef<number>(0);
+  const [hasMoved, setHasMoved] = useState(false);
 
   const transitionInProgress = useRef(false);
   const lastTimestamp = useRef(0);
@@ -80,8 +86,61 @@ const Portfolio = () => {
     fetchVideoInfo();
   }, [videoIds, isClient]);
 
+  // Gestionnaires d'événements pour le défilement manuel
+  const handleMouseDown = (e: React.MouseEvent) => {
+    setIsDragging(true);
+    setHasMoved(false);
+    dragDistance.current = 0;
+    dragStartTime.current = Date.now();
+    setStartX(e.pageX - containerRef.current!.offsetLeft);
+    setScrollLeft(containerRef.current!.scrollLeft);
+  };
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setIsDragging(true);
+    setHasMoved(false);
+    dragDistance.current = 0;
+    dragStartTime.current = Date.now();
+    setStartX(e.touches[0].pageX - containerRef.current!.offsetLeft);
+    setScrollLeft(containerRef.current!.scrollLeft);
+  };
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!isDragging) return;
+    e.preventDefault();
+    const x = e.pageX - containerRef.current!.offsetLeft;
+    const walk = (x - startX) * 0.8;
+    dragDistance.current = Math.abs(walk);
+    if (dragDistance.current > 5) {
+      setHasMoved(true);
+    }
+    containerRef.current!.scrollLeft = scrollLeft - walk;
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (!isDragging) return;
+    const x = e.touches[0].pageX - containerRef.current!.offsetLeft;
+    const walk = (x - startX) * 0.8;
+    dragDistance.current = Math.abs(walk);
+    if (dragDistance.current > 5) {
+      setHasMoved(true);
+    }
+    containerRef.current!.scrollLeft = scrollLeft - walk;
+  };
+
+  const handleDragEnd = () => {
+    const dragDuration = Date.now() - dragStartTime.current;
+    const wasClick = dragDuration < 200 && dragDistance.current < 5;
+
+    if (!wasClick) {
+      setHasMoved(true);
+    }
+
+    setIsDragging(false);
+  };
+
   useEffect(() => {
-    if (!containerRef.current || !isClient) return;
+    if (!containerRef.current || !isClient || isDragging) return;
 
     const container = containerRef.current;
     let animationFrameId: number;
@@ -94,10 +153,12 @@ const Portfolio = () => {
 
       const deltaTime = timestamp - lastTimestamp.current;
       lastTimestamp.current = timestamp;
-      if (!transitionInProgress.current) {
+
+      if (!transitionInProgress.current && !isDragging) {
         const speed = isHovered ? HOVER_SPEED : NORMAL_SPEED;
-        const scrollAmount = (speed * deltaTime) / 16; // Normalisation pour 60fps
+        const scrollAmount = (speed * deltaTime) / 16;
         container.scrollLeft += scrollAmount;
+
         if (container.scrollLeft >= SINGLE_SET_WIDTH) {
           transitionInProgress.current = true;
           container.scrollLeft = 0;
@@ -116,7 +177,7 @@ const Portfolio = () => {
       cancelAnimationFrame(animationFrameId);
       lastTimestamp.current = 0;
     };
-  }, [isHovered, isClient, videoIds.length]);
+  }, [isHovered, isClient, videoIds.length, NORMAL_SPEED, isDragging]);
 
   if (!isClient) {
     return (
@@ -140,9 +201,18 @@ const Portfolio = () => {
     <div className="portfolio my-[200px] overflow-hidden">
       <div
         ref={containerRef}
-        className="flex gap-4 overflow-x-hidden w-full"
+        className="flex gap-4 overflow-x-hidden w-full cursor-grab active:cursor-grabbing"
         onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
+        onMouseLeave={() => {
+          setIsHovered(false);
+          handleDragEnd();
+        }}
+        onMouseDown={handleMouseDown}
+        onMouseMove={handleMouseMove}
+        onMouseUp={handleDragEnd}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleDragEnd}
       >
         {videos.map((video, index) => (
           <div
@@ -154,6 +224,7 @@ const Portfolio = () => {
               videoId={video.id}
               title={video.title}
               description={video.description}
+              preventClick={hasMoved}
             />
           </div>
         ))}
