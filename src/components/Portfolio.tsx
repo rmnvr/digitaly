@@ -76,7 +76,7 @@ const Portfolio = () => {
           return;
         }
 
-        setVideos([...data, ...data, ...data, ...data]);
+        setVideos([...data, ...data, ...data, ...data, ...data, ...data, ...data, ...data]);
       } catch (error) {
         console.error('Error fetching video info:', error);
         setVideos(videoIds.map(id => ({ id, title: '', description: '' })));
@@ -145,6 +145,12 @@ const Portfolio = () => {
     const container = containerRef.current;
     let animationFrameId: number;
     const SINGLE_SET_WIDTH = videoIds.length * (350 + 16);
+    const RESET_THRESHOLD = SINGLE_SET_WIDTH * 4; // Milieu des 8 copies
+
+    // Positionnement initial au milieu (après le premier rendu)
+    if (container.scrollLeft === 0) {
+      container.scrollLeft = RESET_THRESHOLD - SINGLE_SET_WIDTH;
+    }
 
     const animate = (timestamp: number) => {
       if (!lastTimestamp.current) {
@@ -157,14 +163,15 @@ const Portfolio = () => {
       if (!transitionInProgress.current && !isDragging) {
         const speed = isHovered ? HOVER_SPEED : NORMAL_SPEED;
         const scrollAmount = (speed * deltaTime) / 16;
-        container.scrollLeft += scrollAmount;
+        container.scrollLeft += scrollAmount; // Défilement vers la droite
 
-        if (container.scrollLeft >= SINGLE_SET_WIDTH) {
-          transitionInProgress.current = true;
-          container.scrollLeft = 0;
-          setTimeout(() => {
-            transitionInProgress.current = false;
-          }, 50);
+        // Reset quand on arrive trop à droite
+        if (container.scrollLeft >= RESET_THRESHOLD) {
+          container.scrollLeft = RESET_THRESHOLD - SINGLE_SET_WIDTH;
+        }
+        // Reset quand on arrive trop à gauche
+        else if (container.scrollLeft <= SINGLE_SET_WIDTH) {
+          container.scrollLeft = RESET_THRESHOLD - SINGLE_SET_WIDTH;
         }
       }
 
@@ -181,8 +188,8 @@ const Portfolio = () => {
 
   if (!isClient) {
     return (
-      <div className="portfolio my-[200px] overflow-hidden">
-        <div className="flex gap-4 overflow-x-hidden w-full">
+      <div className="portfolio overflow-hidden">
+        <div className="flex gap-[16px] overflow-x-hidden w-full">
           {videoIds.map((id, index) => (
             <div
               key={index}
@@ -198,7 +205,7 @@ const Portfolio = () => {
   }
 
   return (
-    <div className="portfolio my-[200px] overflow-hidden">
+    <div className="portfolio overflow-hidden mb-20">
       <div
         ref={containerRef}
         className="flex gap-4 overflow-x-hidden w-full cursor-grab active:cursor-grabbing"
