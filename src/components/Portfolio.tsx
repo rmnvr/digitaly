@@ -1,20 +1,14 @@
 'use client'
 
-import React, { useState, useEffect, useMemo, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import VideoThumbnail from './VideoThumbnail';
+import videoData from './videoData/videoData'; // Importez le tableau d'objets vidéo
+import VideoLightbox from './VideoLightbox';
 
 interface VideoInfo {
   id: string;
   title: string;
-  description: string;
-  duration?: string;
-  viewCount?: string;
-  publishedAt?: string;
-  thumbnails?: {
-    default: { url: string; width: number; height: number };
-    medium: { url: string; width: number; height: number };
-    high: { url: string; width: number; height: number };
-  };
+  component: React.FC<{ description?: string; defaultDescription: string }>;
 }
 
 const Portfolio = () => {
@@ -29,18 +23,14 @@ const Portfolio = () => {
   const dragStartTime = useRef<number>(0);
   const dragDistance = useRef<number>(0);
   const [hasMoved, setHasMoved] = useState(false);
+  const [showLightbox, setShowLightbox] = useState(false);
+  const [selectedVideo, setSelectedVideo] = useState<VideoInfo | null>(null);
+
+  // State to hold preloaded iframe URLs
+  const [preloadedIframes, setPreloadedIframes] = useState<{ [key: string]: string }>({});
 
   const transitionInProgress = useRef(false);
   const lastTimestamp = useRef(0);
-
-  const videoIds = useMemo(() => [
-    'GLvYkmyYcKY',
-    'zfkLExgz6D8',
-    'o_41BoRZsHE',
-    'RWyRlp6scVQ',
-    'MZdhjIkB-Rc',
-    'yf19jCtVSRc',
-  ], []);
 
   const NORMAL_SPEED = isMobile ? 1.05 : 2; // Vitesse normale ajustée pour mobile
   const HOVER_SPEED = 1.05; // Vitesse de survol ajustée pour mobile
@@ -63,28 +53,19 @@ const Portfolio = () => {
   }, []);
 
   useEffect(() => {
-    if (!isClient) return;
+    setVideos(Array.from({ length: 8 }, () => videoData).flat());
 
-    const fetchVideoInfo = async () => {
-      try {
-        const response = await fetch(`/api/youtube?videoIds=${videoIds.join(',')}&modestbranding=1&controls=0&rel=0&showinfo=0`);
-        const data = await response.json();
-
-        if (!Array.isArray(data)) {
-          console.error('Invalid API response format:', data);
-          setVideos(videoIds.map(id => ({ id, title: '', description: '' })));
-          return;
-        }
-
-        setVideos([...data, ...data, ...data, ...data, ...data, ...data, ...data, ...data]);
-      } catch (error) {
-        console.error('Error fetching video info:', error);
-        setVideos(videoIds.map(id => ({ id, title: '', description: '' })));
-      }
+    // Preload iframes without autoplay
+    const preloadIframes = () => {
+      const newIframes: { [key: string]: string } = {};
+      videoData.forEach(video => {
+        newIframes[video.id] = `https://www.youtube.com/embed/${video.id}?modestbranding=1&controls=1&rel=0&showinfo=0`; // No autoplay
+      });
+      setPreloadedIframes(newIframes);
     };
 
-    fetchVideoInfo();
-  }, [videoIds, isClient]);
+    preloadIframes();
+  }, []);
 
   // Gestionnaires d'événements pour le défilement manuel
   const handleMouseDown = (e: React.MouseEvent) => {
@@ -139,12 +120,17 @@ const Portfolio = () => {
     setIsDragging(false);
   };
 
+  const handleVideoClick = (video: VideoInfo) => {
+    setSelectedVideo(video);
+    setShowLightbox(true);
+  };
+
   useEffect(() => {
     if (!containerRef.current || !isClient || isDragging) return;
 
     const container = containerRef.current;
     let animationFrameId: number;
-    const SINGLE_SET_WIDTH = videoIds.length * (350 + 16);
+    const SINGLE_SET_WIDTH = videoData.length * (350 + 16);
     const RESET_THRESHOLD = SINGLE_SET_WIDTH * 4; // Milieu des 8 copies
 
     // Positionnement initial au milieu (après le premier rendu)
@@ -184,13 +170,13 @@ const Portfolio = () => {
       cancelAnimationFrame(animationFrameId);
       lastTimestamp.current = 0;
     };
-  }, [isHovered, isClient, videoIds.length, NORMAL_SPEED, isDragging]);
+  }, [isHovered, isClient, NORMAL_SPEED, isDragging]);
 
   if (!isClient) {
     return (
       <div className="portfolio overflow-hidden">
         <div className="flex gap-[16px] overflow-x-hidden w-full">
-          {videoIds.map((id, index) => (
+          {videoData.map((id, index) => (
             <div
               key={index}
               className="flex-none"
@@ -230,12 +216,31 @@ const Portfolio = () => {
             <VideoThumbnail
               videoId={video.id}
               title={video.title}
-              description={video.description}
               preventClick={hasMoved}
+              onClick={() => handleVideoClick(video)}
             />
           </div>
         ))}
       </div>
+
+      <VideoLightbox
+        isOpen={showLightbox}
+        onClose={() => setShowLightbox(false)}
+        videoId={selectedVideo?.id}
+        title={selectedVideo?.title}
+      />
+
+      {/* Hidden iframes for preloading */}
+      {Object.entries(preloadedIframes).map(([id, src]) => (
+        <iframe
+          key={id}
+          style={{ display: 'none' }}
+          src={src}
+          title={`Preload ${id}`}
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+        />
+      ))}
     </div>
   );
 };
