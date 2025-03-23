@@ -11,7 +11,7 @@ interface VideoLightboxProps {
 
 // Create a mapping for the components
 const componentMap: Record<string, React.LazyExoticComponent<React.FC<{ description?: string; defaultDescription: string }>>> = {
-    'GLvYkmyYcKY': React.lazy(() => import('./videoData/AgeDorVideo')),
+    'yf19jCtVSRc': React.lazy(() => import('./videoData/AgeDorVideo')),
     'zfkLExgz6D8': React.lazy(() => import('./videoData/VittoriVideo')),
     'sk1bz-QY0IQ': React.lazy(() => import('./videoData/GrrranitVideo')),
     'MP-RS9Tr7BY': React.lazy(() => import('./videoData/CapebVideo')),
@@ -24,9 +24,11 @@ const VideoLightbox: React.FC<VideoLightboxProps> = ({
     title,
 }) => {
     if (!isOpen) return null;
+    console.log("VIDEO ID", videoId)
 
     // Use the mapping to get the component to render
     const ComponentToRender = videoId ? componentMap[videoId] : null;
+    console.log("VIDEO ID", ComponentToRender)
 
     return (
         <div className="fixed inset-0 backdrop-blur-md bg-black/30 z-50 flex items-center justify-center p-4">
