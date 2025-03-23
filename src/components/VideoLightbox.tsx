@@ -1,23 +1,32 @@
 'use client'
 
+import React, { Suspense } from 'react';
+
 interface VideoLightboxProps {
     isOpen: boolean;
     onClose: () => void;
-    videoId: string;
-    title: string;
-    description: string;
+    videoId?: string;
+    title?: string;
 }
+
+// Create a mapping for the components
+const componentMap: Record<string, React.LazyExoticComponent<React.FC<{ description?: string; defaultDescription: string }>>> = {
+    'GLvYkmyYcKY': React.lazy(() => import('./videoData/AgeDorVideo')),
+    'zfkLExgz6D8': React.lazy(() => import('./videoData/VittoriVideo')),
+    'sk1bz-QY0IQ': React.lazy(() => import('./videoData/GrrranitVideo')),
+    'MP-RS9Tr7BY': React.lazy(() => import('./videoData/CapebVideo')),
+};
 
 const VideoLightbox: React.FC<VideoLightboxProps> = ({
     isOpen,
     onClose,
     videoId,
     title,
-    description
 }) => {
-    const defaultDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.";
-
     if (!isOpen) return null;
+
+    // Use the mapping to get the component to render
+    const ComponentToRender = videoId ? componentMap[videoId] : null;
 
     return (
         <div className="fixed inset-0 backdrop-blur-md bg-black/30 z-50 flex items-center justify-center p-4">
@@ -45,34 +54,11 @@ const VideoLightbox: React.FC<VideoLightboxProps> = ({
                     {/* Section description */}
                     <div className="flex-1 lg:max-w-[45%]">
                         <h2 className="text-3xl font-bold mb-4">{title}</h2>
-                        <div className="prose max-w-none">
-                            <p className="text-gray-700 text-base">
-                                {description || defaultDescription}
-                            </p>
-                        </div>
-                        <ul className="mt-6 space-y-2">
-                            <li className="flex items-center gap-2">
-                                <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none">
-                                    <circle cx="12" cy="12" r="10" stroke="black" strokeWidth="2" />
-                                    <path d="M8 12L11 15L16 9" stroke="black" strokeWidth="2" strokeLinecap="round" />
-                                </svg>
-                                Conception du script & storyboard
-                            </li>
-                            <li className="flex items-center gap-2">
-                                <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none">
-                                    <circle cx="12" cy="12" r="10" stroke="black" strokeWidth="2" />
-                                    <path d="M8 12L11 15L16 9" stroke="black" strokeWidth="2" strokeLinecap="round" />
-                                </svg>
-                                Création graphique
-                            </li>
-                            <li className="flex items-center gap-2">
-                                <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none">
-                                    <circle cx="12" cy="12" r="10" stroke="black" strokeWidth="2" />
-                                    <path d="M8 12L11 15L16 9" stroke="black" strokeWidth="2" strokeLinecap="round" />
-                                </svg>
-                                Animation, voix-off & sound design
-                            </li>
-                        </ul>
+                        {ComponentToRender && (
+                            <Suspense fallback={<div>Loading...</div>}>
+                                <ComponentToRender defaultDescription="Default description here" />
+                            </Suspense>
+                        )}
                         <button className="mt-8 px-6 py-3 bg-black text-white rounded-full text-base hover:bg-gray-800 transition-colors">
                             Demander un devis
                         </button>
@@ -84,7 +70,7 @@ const VideoLightbox: React.FC<VideoLightboxProps> = ({
                             <iframe
                                 width="100%"
                                 height="100%"
-                                src={`https://www.youtube.com/embed/${videoId}?modestbranding=1&controls=1&rel=0&showinfo=0`}
+                                src={`https://www.youtube.com/embed/${videoId}?autoplay=1&modestbranding=1&controls=1&rel=0&showinfo=0`}
                                 title={title}
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                 allowFullScreen
