@@ -2,17 +2,15 @@
 
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
-import VideoLightbox from './VideoLightbox';
 
 interface VideoThumbnailProps {
   videoId: string;
   title: string;
-  description: string;
   preventClick?: boolean;
+  onClick: () => void;
 }
 
-const VideoThumbnail: React.FC<VideoThumbnailProps> = ({ videoId, title, description, preventClick }) => {
-  const [showLightbox, setShowLightbox] = useState(false);
+const VideoThumbnail: React.FC<VideoThumbnailProps> = ({ videoId, title, preventClick, onClick }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [isMobile, setIsMobile] = useState(false)
 
@@ -29,25 +27,13 @@ const VideoThumbnail: React.FC<VideoThumbnailProps> = ({ videoId, title, descrip
     };
   }, []);
 
-  useEffect(() => {
-    if (showLightbox) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
-
-    return () => {
-      document.body.style.overflow = 'unset';
-    };
-  }, [showLightbox]);
-
   const handleInfoClick = (e: React.MouseEvent) => {
     if (preventClick) {
       e.preventDefault();
       return;
     }
     e.stopPropagation();
-    setShowLightbox(true);
+    onClick();
   };
 
   return (
@@ -106,14 +92,6 @@ const VideoThumbnail: React.FC<VideoThumbnailProps> = ({ videoId, title, descrip
           </div>
         </div>
       </div>
-
-      <VideoLightbox
-        isOpen={showLightbox}
-        onClose={() => setShowLightbox(false)}
-        videoId={videoId}
-        title={title}
-        description={description}
-      />
     </>
   );
 };
