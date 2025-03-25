@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { FaInstagram, FaLinkedinIn } from 'react-icons/fa';
+import { FaInstagram, FaLinkedinIn, FaYoutube } from 'react-icons/fa';
 
 const Footer = () => {
   return (
@@ -13,10 +13,10 @@ const Footer = () => {
               <h3 className="text-lg font-bold mb-4">UNE COLLABORATION ?</h3>
               <p className="mb-2">Contactez-nous sur</p>
               <a
-                href="mailto:hello@izhak.fr"
+                href="mailto:hello@digitaly.pro"
                 className="text-white hover:text-gray-300 font-bold"
               >
-                mail@mail.fr
+                hello@digitaly.pro
               </a>
             </div>
 
@@ -24,10 +24,10 @@ const Footer = () => {
               <h3 className="text-lg font-bold mb-4">NOUS REJOINDRE</h3>
               <p className="mb-2">CV + infos sur</p>
               <a
-                href="mailto:job@izhak.fr"
+                href="mailto:contact@digitaly.pro"
                 className="text-white hover:text-gray-300 font-bold"
               >
-                mail@mail.fr
+                contact@digitaly.pro
               </a>
             </div>
 
@@ -46,30 +46,27 @@ const Footer = () => {
 
           <div className="flex flex-col gap-6">
             <div className="flex gap-2 lg:gap-6">
-              {/* <Link href="https://facebook.com" className="hover:text-gray-300">
-                <FaFacebookF size={20} />
-              </Link> */}
-              {/* <Link href="https://twitter.com" className="hover:text-gray-300">
-                <FaTwitter size={20} />
-              </Link> */}
-              <Link href="https://instagram.com" className="hover:text-gray-300">
+              <Link href="https://www.instagram.com/oz_digitaly/" className="hover:text-gray-300" target="_blank" rel="noopener noreferrer">
                 <FaInstagram size={20} />
               </Link>
-              <Link href="https://linkedin.com" className="hover:text-gray-300">
+              <Link href="https://www.linkedin.com/in/oz-%F0%9F%A6%81-akca-9a0abb154/" className="hover:text-gray-300" target="_blank" rel="noopener noreferrer">
                 <FaLinkedinIn size={20} />
+              </Link>
+              <Link href="https://www.youtube.com/@Oz-Digitaly" className="hover:text-gray-300" target="_blank" rel="noopener noreferrer">
+                <FaYoutube size={20} />
               </Link>
             </div>
 
             {/* Liens légaux */}
             <div className="flex flex-col gap-2 text-sm">
               <span>© DIGITALY 2025</span>
-              <Link href="/mentions-legales" className="hover:text-gray-300">
+              <Link href="/mentions-legales" className="hover:text-gray-300" target="_blank" rel="noopener noreferrer">
                 MENTIONS LÉGALES
               </Link>
-              <Link href="/confidentialite" className="hover:text-gray-300">
+              <Link href="/confidentialite" className="hover:text-gray-300" target="_blank" rel="noopener noreferrer">
                 POLITIQUE DE CONFIDENTIALITÉ
               </Link>
-              <Link href="/cgv" className="hover:text-gray-300">
+              <Link href="/cgv" className="hover:text-gray-300" target="_blank" rel="noopener noreferrer">
                 CGV
               </Link>
             </div>
