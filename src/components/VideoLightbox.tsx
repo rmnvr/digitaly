@@ -24,11 +24,9 @@ const VideoLightbox: React.FC<VideoLightboxProps> = ({
     title,
 }) => {
     if (!isOpen) return null;
-    console.log("VIDEO ID", videoId)
 
     // Use the mapping to get the component to render
     const ComponentToRender = videoId ? componentMap[videoId] : null;
-    console.log("VIDEO ID", ComponentToRender)
 
     return (
         <div className="fixed inset-0 backdrop-blur-md bg-black/30 z-50 flex items-center justify-center p-4">
