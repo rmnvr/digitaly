@@ -33,13 +33,13 @@ const Footer = () => {
 
             <div>
               <h3 className="text-lg font-bold mb-4">Sevenans</h3>
-              <p>6B 6 Route de Belfort</p>
+              <p>6 Rue de Belfort</p>
               <p>90400 Sevenans</p>
               <a
-                href="tel:+33752622938"
+                href="tel:+33614788852"
                 className="block mt-2 hover:text-gray-300"
               >
-                +33 (0)6 66 66 66 66
+                +33 (0)6 14 78 88 52
               </a>
             </div>
           </div>
