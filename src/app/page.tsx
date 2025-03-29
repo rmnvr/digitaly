@@ -1,4 +1,3 @@
-// pages/index.js
 'use client';
 
 import HeroSection from '@/components/HeroSection';
