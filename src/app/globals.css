@@ -5,12 +5,14 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --primary: #030243;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    --primary: #030243;
   }
 }
 
@@ -45,4 +47,22 @@ body {
   100% {
     transform: rotate(1turn);
   }
+}
+
+/* src/app/globals.css */
+@keyframes scroll {
+  0% {
+    transform: translateX(100%);
+  }
+
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.animate-scroll-logo {
+  animation: scroll 20s linear infinite;
+  /* Ajustez la durée selon vos besoins */
+  white-space: nowrap;
+  /* Empêche le retour à la ligne */
 }
