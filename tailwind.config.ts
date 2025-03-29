@@ -8,9 +8,13 @@ export default {
   ],
   theme: {
     extend: {
+      animation: {
+        'infinite-scroll': 'scroll 60s linear infinite',
+      },
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        primary: "var(--primary)",
       },
       keyframes: {
         fadeIn: {
@@ -20,7 +24,11 @@ export default {
         fadeOut: {
           '0%': { opacity: '1' },
           '100%': { opacity: '0' },
-        }
+        },
+        scroll: {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(-33.333%)' }, // Pour 3 copies
+        },
       }
     },
   },
