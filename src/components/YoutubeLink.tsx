@@ -7,7 +7,7 @@ const YoutubeLink = () => {
 
   return (
     <div className="flex justify-center items-center">
-      <button className="my-6 px-6 py-3 bg-black text-white rounded-full text-base hover:bg-gray-800 transition-colors" onClick={handleClick}>
+      <button className="my-6 px-6 py-3 bg-primary text-white rounded-full text-base hover:bg-gray-800 transition-colors" onClick={handleClick}>
         Toutes nos réalisations
       </button>
     </div>
