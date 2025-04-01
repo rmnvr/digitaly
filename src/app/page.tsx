@@ -1,5 +1,6 @@
 'use client';
 
+import { useRef } from 'react';
 import HeroSection from '@/components/HeroSection';
 import Portfolio from '@/components/Portfolio';
 import MissionSection from '@/components/MissionSection';
@@ -8,14 +9,16 @@ import YoutubeLink from '@/components/YoutubeLink';
 import LogoBanner from '@/components/LogoBanner';
 
 export default function Home() {
+  const footerRef = useRef<HTMLDivElement>(null!);
+
   return (
     <main>
-      <HeroSection />
-      <LogoBanner /> {/* Ajouter le bandeau de logos ici */}
+      <HeroSection footerRef={footerRef} />
+      <LogoBanner />
       <MissionSection />
       <Portfolio />
       <YoutubeLink />
-      <Footer />
+      <Footer ref={footerRef} />
     </main>
   );
 }

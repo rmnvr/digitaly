@@ -1,32 +1,26 @@
 'use client';
 
 import { useState } from 'react';
+interface NavigationProps {
+  footerRef: React.RefObject<HTMLDivElement>;
+}
 
-const Navigation = () => {
+const Navigation: React.FC<NavigationProps> = ({ footerRef }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const handleClick = () => {
+    if (footerRef.current) {
+      footerRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   return (
     <nav className="absolute top-0 right-0 w-full z-50 p-4">
       {/* Version Desktop */}
       <div className="hidden md:flex justify-end items-center space-x-8 pr-8">
-        <a
-          href="#"
-          className="text-white relative transition-colors duration-300 hover:text-[#C93D39] after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-white after:transition-all after:duration-300 hover:after:w-full hover:after:bg-[#C93D39]"
-        >
-          Digitaly
-        </a>
-        <a
-          href="#"
-          className="text-white relative transition-colors duration-300 hover:text-[#C93D39] after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-white after:transition-all after:duration-300 hover:after:w-full hover:after:bg-[#C93D39]"
-        >
-          Image de marque
-        </a>
-        <a
-          href="#"
-          className="text-white relative transition-colors duration-300 hover:text-[#C93D39] after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-white after:transition-all after:duration-300 hover:after:w-full hover:after:bg-[#C93D39]"
-        >
-          Portfolio
-        </a>
+        <button className="my-1 px-6 py-3 bg-primary text-white rounded-full text-base hover:bg-gray-800 transition-colors" onClick={handleClick}>
+          Demander un devis
+        </button>
       </div>
 
       {/* Bouton Hamburger */}
