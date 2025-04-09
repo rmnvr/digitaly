@@ -6,6 +6,7 @@ import React, { useEffect, useRef, useState } from 'react';
 const logos = [
   { src: '/logo/AGE_DOR.svg', width: 100, height: 50 },
   { src: '/logo/BMW.svg', width: 100, height: 50 },
+  { src: '/logo/CAMPANILE.svg', width: 100, height: 50 },
   { src: '/logo/CAPEB.svg', width: 100, height: 50 },
   { src: '/logo/CMA.svg', width: 100, height: 50 },
   { src: '/logo/Cupra_OZ.svg', width: 100, height: 50 },
@@ -13,6 +14,7 @@ const logos = [
   { src: '/logo/Metalhom.svg', width: 100, height: 50 },
   { src: '/logo/Prefecture.svg', width: 100, height: 50 },
   { src: '/logo/RE_MAX.svg', width: 100, height: 50 },
+  { src: '/logo/ROGER_MARTIN.svg', width: 100, height: 50 },
   { src: '/logo/Ville_de_Belfort.svg', width: 100, height: 50 },
   { src: '/logo/VITTORI.svg', width: 100, height: 50 },
   { src: '/logo/VOLVO.svg', width: 100, height: 50 }
@@ -27,7 +29,7 @@ const LogoBanner = () => {
   const [multipleLogos, setMultipleLogos] = useState<typeof logos>([]);
 
   // Vitesse de défilement (ajustable)
-  const SCROLL_SPEED = isMobile ? 40 : 60; // pixels par seconde
+  const SCROLL_SPEED = isMobile ? 60 : 60; // pixels par seconde
 
   useEffect(() => {
     setIsClient(true);
