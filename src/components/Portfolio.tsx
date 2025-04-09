@@ -11,7 +11,11 @@ interface VideoInfo {
   component: React.FC<{ description?: string; defaultDescription: string }>;
 }
 
-const Portfolio = () => {
+interface PortfolioProps {
+  footerRef: React.RefObject<HTMLDivElement>;
+}
+
+const Portfolio: React.FC<PortfolioProps> = ({ footerRef }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isHovered, setIsHovered] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
@@ -228,6 +232,7 @@ const Portfolio = () => {
         onClose={() => setShowLightbox(false)}
         videoId={selectedVideo?.id}
         title={selectedVideo?.title}
+        footerRef={footerRef as React.RefObject<HTMLDivElement>}
       />
 
       {/* Hidden iframes for preloading */}
