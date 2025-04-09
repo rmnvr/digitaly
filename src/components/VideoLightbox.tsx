@@ -59,8 +59,8 @@ const VideoLightbox: React.FC<VideoLightboxProps> = ({
                                 <ComponentToRender defaultDescription="Default description here" />
                             </Suspense>
                         )}
-                        <button className="mt-8 px-6 py-3 bg-black text-white rounded-full text-base hover:bg-gray-800 transition-colors">
-                            Demander un devis
+                        <button className="mt-8 px-6 py-3 bg-primary text-white rounded-full text-base hover:bg-secondary hover:text-primary transition-colors duration-300 uppercase">
+                            J&apos;ai un projet
                         </button>
                     </div>
 

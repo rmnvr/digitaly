@@ -14,7 +14,7 @@ const Footer = forwardRef<HTMLDivElement, React.HTMLProps<HTMLDivElement>>((prop
               <h3 className="text-lg font-bold mb-4">UN PROJET VIDEO ?</h3>
               <a
                 href="tel:+33384570226"
-                className="block mt-2 hover:text-gray-300"
+                className="block mb-2 hover:text-gray-300"
               >
                 03 84 57 02 26
               </a>
