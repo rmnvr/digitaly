@@ -54,10 +54,10 @@ const VideoLightbox: React.FC<VideoLightboxProps> = ({
 
     return (
         <div className="fixed inset-0 backdrop-blur-md bg-black/30 z-50 flex items-center justify-center p-4">
-            <div className="bg-[#FFFCF9] w-[90%] max-w-[1200px] max-h-[90vh] rounded-[32px] overflow-auto relative">
+            <div className="bg-[#FFFCF9] w-[90%] max-w-[1200px] max-h-[90vh] rounded-[32px] overflow-auto relative xl:pt-6">
                 <button
                     onClick={onClose}
-                    className="absolute top-4 right-4 p-2 md:p-1 rounded-full transition-colors duration-200 z-20"
+                    className="absolute top-4 right-4 p-2 xl:p-1 rounded-full transition-colors duration-200 z-20"
                 >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
