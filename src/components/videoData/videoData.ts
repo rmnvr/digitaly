@@ -2,6 +2,9 @@ import AgeDorVideo from './AgeDorVideo';
 import VittoriVideo from './VittoriVideo';
 import GrrranitVideo from './GrrranitVideo';
 import CapebVideo from './CapebVideo';
+import VolvoVideo from './VolvoVideo';
+import ImpaktImmoVideo from './ImpaktImmoVideo';
+import PisteVideo from './PisteVideo';
 
 const videoData = [
   {
@@ -23,6 +26,21 @@ const videoData = [
     id: 'MP-RS9Tr7BY',
     title: 'CAPEB',
     component: CapebVideo,
+  },
+  {
+    id: 'w0TDMYj7lfQ',
+    title: 'VOLVO',
+    component: VolvoVideo,
+  },
+  {
+    id: 'v8V_uDSbOMs',
+    title: 'IMPAKT IMMO',
+    component: ImpaktImmoVideo,
+  },
+  {
+    id: 'eQ0omQcjH5E',
+    title: 'La Piste Cyclable - LPC',
+    component: PisteVideo,
   }
 ];
 

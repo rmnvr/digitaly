@@ -1,12 +1,13 @@
 'use client'
 
-import React, { Suspense } from 'react';
+import React, { Suspense, useEffect } from 'react';
 
 interface VideoLightboxProps {
     isOpen: boolean;
     onClose: () => void;
     videoId?: string;
     title?: string;
+    footerRef?: React.RefObject<HTMLDivElement>;
 }
 
 // Create a mapping for the components
@@ -15,6 +16,9 @@ const componentMap: Record<string, React.LazyExoticComponent<React.FC<{ descript
     'zfkLExgz6D8': React.lazy(() => import('./videoData/VittoriVideo')),
     'sk1bz-QY0IQ': React.lazy(() => import('./videoData/GrrranitVideo')),
     'MP-RS9Tr7BY': React.lazy(() => import('./videoData/CapebVideo')),
+    'w0TDMYj7lfQ': React.lazy(() => import('./videoData/VolvoVideo')),
+    'v8V_uDSbOMs': React.lazy(() => import('./videoData/ImpaktImmoVideo')),
+    'eQ0omQcjH5E': React.lazy(() => import('./videoData/PisteVideo')),
 };
 
 const VideoLightbox: React.FC<VideoLightboxProps> = ({
@@ -22,18 +26,38 @@ const VideoLightbox: React.FC<VideoLightboxProps> = ({
     onClose,
     videoId,
     title,
+    footerRef,
 }) => {
+    useEffect(() => {
+        if (isOpen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
+
+        return () => {
+            document.body.style.overflow = '';
+        };
+    }, [isOpen]);
+
     if (!isOpen) return null;
 
     // Use the mapping to get the component to render
     const ComponentToRender = videoId ? componentMap[videoId] : null;
+
+    const handleProjectClick = () => {
+        onClose();
+        if (footerRef?.current) {
+            footerRef.current.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
 
     return (
         <div className="fixed inset-0 backdrop-blur-md bg-black/30 z-50 flex items-center justify-center p-4">
             <div className="bg-[#FFFCF9] w-[90%] max-w-[1200px] max-h-[90vh] rounded-[32px] overflow-auto relative">
                 <button
                     onClick={onClose}
-                    className="absolute top-4 right-4 p-2 rounded-full transition-colors duration-200 z-20"
+                    className="absolute top-4 right-4 p-2 md:p-1 rounded-full transition-colors duration-200 z-20"
                 >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -59,7 +83,10 @@ const VideoLightbox: React.FC<VideoLightboxProps> = ({
                                 <ComponentToRender defaultDescription="Default description here" />
                             </Suspense>
                         )}
-                        <button className="mt-8 px-6 py-3 bg-primary text-white rounded-full text-base hover:bg-secondary hover:text-primary transition-colors duration-300 uppercase">
+                        <button
+                            className="mt-8 px-6 py-3 bg-primary text-white rounded-full text-base hover:bg-secondary hover:text-primary transition-colors duration-300 uppercase"
+                            onClick={handleProjectClick}
+                        >
                             J&apos;ai un projet
                         </button>
                     </div>
