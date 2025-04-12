@@ -29,7 +29,7 @@ const LogoBanner = () => {
   const [multipleLogos, setMultipleLogos] = useState<typeof logos>([]);
 
   // Vitesse de défilement (ajustable)
-  const SCROLL_SPEED = isMobile ? 80 : 100; // pixels par seconde
+  const SCROLL_SPEED = isMobile ? 220 : 150; // pixels par seconde
 
   useEffect(() => {
     setIsClient(true);
