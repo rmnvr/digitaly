@@ -11,7 +11,7 @@ const videoData = [
   {
     id: 'yf19jCtVSRc',
     title: "Age d'Or",
-    gif: "/gifs/AGE_OR.gif",
+    gif: "/gifs/AGE_DOR.gif",
     component: AgeDorVideo,
   },
   {
@@ -25,12 +25,6 @@ const videoData = [
     title: 'Grrranit',
     gif: "/gifs/Grrranit_Doc.gif",
     component: GrrranitDocVideo,
-  },
-  {
-    id: 'MP-RS9Tr7BY',
-    title: 'Capeb',
-    gif: "/gifs/Capeb.gif",
-    component: CapebVideo,
   },
   {
     id: 'w0TDMYj7lfQ',
@@ -55,7 +49,13 @@ const videoData = [
     title: 'Grrranit',
     gif: "/gifs/Grrranit_Spectacle.gif",
     component: GrrranitSpecVideo,
-  }
+  },
+  {
+    id: 'MP-RS9Tr7BY',
+    title: 'Capeb',
+    gif: "/gifs/Capeb.gif",
+    component: CapebVideo,
+  },
 ];
 
 export default videoData;
