@@ -8,7 +8,8 @@ const AgeDorVideo: React.FC = () => {
       </p>
 
       <p className="text-gray-700 text-base mt-8">
-        À travers ce documentaire plein d’émotions, notre objectif était d’inspirer d’autres personnes bienveillantes à rejoindre l’équipe.      </p>
+        À travers ce documentaire plein d’émotions, notre objectif était d’inspirer d’autres personnes bienveillantes à rejoindre l’équipe.
+      </p>
     </>
   );
 };

@@ -14,11 +14,12 @@ interface VideoLightboxProps {
 const componentMap: Record<string, React.LazyExoticComponent<React.FC<{ description?: string; defaultDescription: string }>>> = {
     'yf19jCtVSRc': React.lazy(() => import('./videoData/AgeDorVideo')),
     'zfkLExgz6D8': React.lazy(() => import('./videoData/VittoriVideo')),
-    'sk1bz-QY0IQ': React.lazy(() => import('./videoData/GrrranitVideo')),
+    'sk1bz-QY0IQ': React.lazy(() => import('./videoData/GrrranitDocVideo')),
     'MP-RS9Tr7BY': React.lazy(() => import('./videoData/CapebVideo')),
     'w0TDMYj7lfQ': React.lazy(() => import('./videoData/VolvoVideo')),
     'v8V_uDSbOMs': React.lazy(() => import('./videoData/ImpaktImmoVideo')),
     'eQ0omQcjH5E': React.lazy(() => import('./videoData/PisteVideo')),
+    'GLvYkmyYcKY': React.lazy(() => import('./videoData/GrrranitSpecVideo'))
 };
 
 const VideoLightbox: React.FC<VideoLightboxProps> = ({

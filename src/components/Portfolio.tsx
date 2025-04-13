@@ -8,6 +8,7 @@ import VideoLightbox from './VideoLightbox';
 interface VideoInfo {
   id: string;
   title: string;
+  gif: string;
   component: React.FC<{ description?: string; defaultDescription: string }>;
 }
 
@@ -220,6 +221,7 @@ const Portfolio: React.FC<PortfolioProps> = ({ footerRef }) => {
             <VideoThumbnail
               videoId={video.id}
               title={video.title}
+              gif={video.gif}
               preventClick={hasMoved}
               onClick={() => handleVideoClick(video)}
             />

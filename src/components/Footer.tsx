@@ -38,7 +38,7 @@ const Footer = forwardRef<HTMLDivElement, React.HTMLProps<HTMLDivElement>>((prop
             </div>
 
             <div>
-              <h3 className="text-lg font-bold mb-4">Sevenans</h3>
+              <h3 className="text-lg font-bold mb-4">ADRESSE</h3>
               <p>6 Rue de Belfort</p>
               <p>90400 Sevenans</p>
             </div>

@@ -6,11 +6,12 @@ import Image from 'next/image';
 interface VideoThumbnailProps {
   videoId: string;
   title: string;
+  gif: string;
   preventClick?: boolean;
   onClick: () => void;
 }
 
-const VideoThumbnail: React.FC<VideoThumbnailProps> = ({ videoId, title, preventClick, onClick }) => {
+const VideoThumbnail: React.FC<VideoThumbnailProps> = ({ videoId, title, gif, preventClick, onClick }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [isMobile, setIsMobile] = useState(false)
 
@@ -52,7 +53,7 @@ const VideoThumbnail: React.FC<VideoThumbnailProps> = ({ videoId, title, prevent
                 <div className={`absolute inset-0 transition-opacity duration-500 ${isHovered ? 'opacity-100' : 'opacity-0'
                   }`}>
                   <Image
-                    src="https://c.tenor.com/Jo1xLhLKfe8AAAAd/tenor.gif"
+                    src={gif}
                     alt="Power GIF"
                     width={360}
                     height={250}
@@ -86,7 +87,7 @@ const VideoThumbnail: React.FC<VideoThumbnailProps> = ({ videoId, title, prevent
                   <div className="w-0 h-0 border-t-[3px] border-t-transparent border-l-[6px] border-l-white border-b-[3px] border-b-transparent" />
                 </div>
                 {/* Texte */}
-                <h3 className="text-white text-sm font-medium tracking-wide">{title}</h3>
+                <h3 className="text-white text-sm font-medium tracking-wide mb-[2px]">{title}</h3>
               </div>
             </div>
           </div>
