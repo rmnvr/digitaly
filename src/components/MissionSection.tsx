@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import React, { useEffect, useRef, useState } from 'react';
 
 const MissionSection = () => {
@@ -29,6 +30,42 @@ const MissionSection = () => {
   return (
     <section ref={sectionRef} className="py-24 bg-white">
       <div className="container mx-auto px-4">
+        {/* Agency Description */}
+        <div className={`mb-24 opacity-0 ${isVisible ? 'animate-[fadeIn_0.6s_ease-in-out_forwards]' : ''}`}>
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            {/* Left Image */}
+            <div className="relative rounded-3xl overflow-hidden">
+              <Image
+                src="/studio-video.jpg"
+                alt="Studio de production vidéo avec fond vert"
+                className="w-full h-auto object-cover"
+              />
+            </div>
+
+            {/* Right Content */}
+            <div>
+              <span className="inline-block px-4 py-2 rounded-full text-sm border border-[#0A0B2E]/20 text-[#0A0B2E] mb-4">
+                NOTRE AGENCE
+              </span>
+              <h1 className="text-5xl font-bold text-[#0A0B2E] mb-8">
+                Production vidéo<br />&amp; motion design
+              </h1>
+              <p className="text-lg text-[#0A0B2E]/80 leading-relaxed mb-8">
+                Yalp est une agence vidéo et une agence motion design implantée à Paris,
+                Rennes et Lyon, spécialisée dans la création de contenus vidéo sur-mesure
+                pour les entreprises. Nous accompagnons nos clients dans la réalisation de
+                projets adaptés à leurs enjeux de communication, marketing et marque
+                employeur, avec des formats variés comme les spots publicitaires, les
+                vidéos de présentation, le motion design ou encore les vidéos valorisant la
+                marque employeur.
+              </p>
+              <button className="px-6 py-3 bg-[#0A0B2E] text-white rounded-full hover:bg-[#0A0B2E]/90 transition-colors">
+                J&apos;ai un projet
+              </button>
+            </div>
+          </div>
+        </div>
+
         <h2
           className={`text-4xl font-bold text-center mb-16 opacity-0 text-[#0A0B2E]
             ${isVisible ? 'animate-[fadeIn_0.6s_ease-in-out_forwards]' : ''}`}
