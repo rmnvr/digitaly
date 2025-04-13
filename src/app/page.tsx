@@ -16,7 +16,7 @@ export default function Home() {
       <HeroSection footerRef={footerRef} />
       <LogoBanner />
       <MissionSection />
-      <Portfolio />
+      <Portfolio footerRef={footerRef} />
       <YoutubeLink />
       <Footer ref={footerRef} />
     </main>

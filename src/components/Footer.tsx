@@ -38,7 +38,7 @@ const Footer = forwardRef<HTMLDivElement, React.HTMLProps<HTMLDivElement>>((prop
             </div>
 
             <div>
-              <h3 className="text-lg font-bold mb-4">Sevenans</h3>
+              <h3 className="text-lg font-bold mb-4">ADRESSE</h3>
               <p>6 Rue de Belfort</p>
               <p>90400 Sevenans</p>
             </div>
@@ -66,8 +66,8 @@ const Footer = forwardRef<HTMLDivElement, React.HTMLProps<HTMLDivElement>>((prop
               <Link href="/confidentialite" className="hover:text-gray-300" target="_blank" rel="noopener noreferrer">
                 POLITIQUE DE CONFIDENTIALITÉ
               </Link>
-              <Link href="/cgv" className="hover:text-gray-300" target="_blank" rel="noopener noreferrer">
-                CGV
+              <Link href="/terms" className="hover:text-gray-300" target="_blank" rel="noopener noreferrer">
+                CGU
               </Link>
             </div>
           </div>
