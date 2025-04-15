@@ -60,13 +60,13 @@ const Footer = forwardRef<HTMLDivElement, React.HTMLProps<HTMLDivElement>>((prop
             {/* Liens légaux */}
             <div className="flex flex-col gap-2 text-sm">
               <span>© DIGITALY 2025</span>
-              <Link href="/mentions-legales" className="hover:text-gray-300" target="_blank" rel="noopener noreferrer">
+              <Link href="/legal" className="hover:text-gray-300">
                 MENTIONS LÉGALES
               </Link>
               <Link href="/confidentialite" className="hover:text-gray-300" target="_blank" rel="noopener noreferrer">
                 POLITIQUE DE CONFIDENTIALITÉ
               </Link>
-              <Link href="/terms" className="hover:text-gray-300" target="_blank" rel="noopener noreferrer">
+              <Link href="/terms" className="hover:text-gray-300">
                 CGU
               </Link>
             </div>
