@@ -41,7 +41,7 @@ const MissionSection: React.FC<MissionSectionProps> = ({ footerRef }) => {
     <section ref={sectionRef} className="py-24 bg-white">
       <div className="container mx-auto px-4">
         {/* Agency Description */}
-        <div className={`mt-24 mb-36 opacity-0 ${isVisible ? 'animate-[fadeIn_0.6s_ease-in-out_forwards]' : ''}`}>
+        <div className={`mt-24 mb-36 opacity-0 ${isVisible ? 'animate-[fadeIn_0.6s_ease-in-out_forwards]' : ''} border border-[#0A0B2E]/10 rounded-[32px] px-8 lg:px-12 py-10 lg:py-16`}>
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left Image */}
             <div className="relative overflow-hidden max-w-[80%] mx-auto group transform transition-transform duration-300 hover:scale-105 hover:shadow-2xl rounded-3xl">
@@ -92,7 +92,7 @@ const MissionSection: React.FC<MissionSectionProps> = ({ footerRef }) => {
         </div>
 
         {/* Agency Description */}
-        <div className={`mb-10 lg:mb-20 opacity-0 ${isVisible ? 'animate-[fadeIn_0.6s_ease-in-out_forwards]' : ''}`}>
+        <div className={`mb-10 lg:mb-20 opacity-0 ${isVisible ? 'animate-[fadeIn_0.6s_ease-in-out_forwards]' : ''} border border-[#0A0B2E]/10 rounded-[32px] px-8 lg:px-12 py-10 lg:py-16`}>
           <div className="grid lg:grid-cols-2 gap-12 items-center">
 
             {/* Left Content */}
