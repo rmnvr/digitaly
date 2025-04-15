@@ -41,7 +41,7 @@ const MissionSection: React.FC<MissionSectionProps> = ({ footerRef }) => {
     <section ref={sectionRef} className="py-24 bg-white">
       <div className="container mx-auto px-4">
         {/* Agency Description */}
-        <div className={`my-20 opacity-0 ${isVisible ? 'animate-[fadeIn_0.6s_ease-in-out_forwards]' : ''}`}>
+        <div className={`mt-24 mb-36 opacity-0 ${isVisible ? 'animate-[fadeIn_0.6s_ease-in-out_forwards]' : ''}`}>
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left Image */}
             <div className="relative overflow-hidden max-w-[80%] mx-auto group transform transition-transform duration-300 hover:scale-105 hover:shadow-2xl rounded-3xl">
@@ -61,29 +61,29 @@ const MissionSection: React.FC<MissionSectionProps> = ({ footerRef }) => {
 
             {/* Right Content */}
             <div>
-              <span className="inline-block px-4 py-2 rounded-full text-sm border border-[#0A0B2E]/20 text-[#0A0B2E] mb-4 uppercase hover:bg-[#0A0B2E] hover:text-white transition-colors duration-300">
-                Commerciale
-              </span>
-              <h1 className="text-xl md:text-4xl font-extralight text-[#0A0B2E] mb-8 leading-relaxed">
+              <h1 className="text-xl md:text-5xl font-extralight text-[#0A0B2E] mb-8 leading-relaxed">
+                Objectif Commercial
+              </h1>
+              <p className="text-lg font-normal text-[#0A0B2E]/70 leading-relaxed mb-2 space-y-2">
                 Renforcez votre image de marque et votre notoriété,<br />
                 démarquez-vous de vos concurrents et augmentez votre
                 visibilité.
-              </h1>
-              <ul className="text-lg text-[#0A0B2E]/80 leading-relaxed mb-8 space-y-2">
-                <li className="flex items-center transform hover:translate-x-2 transition-transform duration-200">
-                  <span className="w-2 h-2 bg-[#0A0B2E]/80 rounded-full mr-3"></span>
+              </p>
+              <ul className="text-lg font-light text-[#0A0B2E]/70 leading-relaxed mb-8">
+                <li className="flex items-center">
+                  <span className="w-1 h-1 bg-[#0A0B2E]/50 rounded-full mr-2"></span>
                   Présentation d&apos;entreprises
                 </li>
-                <li className="flex items-center transform hover:translate-x-2 transition-transform duration-200">
-                  <span className="w-2 h-2 bg-[#0A0B2E]/80 rounded-full mr-3"></span>
+                <li className="flex items-center">
+                  <span className="w-1 h-1 bg-[#0A0B2E]/50 rounded-full mr-2"></span>
                   Pubs commerciales
                 </li>
-                <li className="flex items-center transform hover:translate-x-2 transition-transform duration-200">
-                  <span className="w-2 h-2 bg-[#0A0B2E]/80 rounded-full mr-3"></span>
+                <li className="flex items-center">
+                  <span className="w-1 h-1 bg-[#0A0B2E]/50 rounded-full mr-2"></span>
                   Témoignages de clients
                 </li>
-                <li className="flex items-center transform hover:translate-x-2 transition-transform duration-200">
-                  <span className="w-2 h-2 bg-[#0A0B2E]/80 rounded-full mr-3"></span>
+                <li className="flex items-center">
+                  <span className="w-1 h-1 bg-[#0A0B2E]/50 rounded-full mr-2"></span>
                   Corporate
                 </li>
               </ul>
@@ -92,43 +92,43 @@ const MissionSection: React.FC<MissionSectionProps> = ({ footerRef }) => {
         </div>
 
         {/* Agency Description */}
-        <div className={`mb-24 opacity-0 ${isVisible ? 'animate-[fadeIn_0.6s_ease-in-out_forwards]' : ''}`}>
+        <div className={`mb-10 lg:mb-20 opacity-0 ${isVisible ? 'animate-[fadeIn_0.6s_ease-in-out_forwards]' : ''}`}>
           <div className="grid lg:grid-cols-2 gap-12 items-center">
 
             {/* Left Content */}
-            <div>
-              <span className="inline-block px-4 py-2 rounded-full text-sm border border-[#0A0B2E]/20 text-[#0A0B2E] mb-4 uppercase hover:bg-[#0A0B2E] hover:text-white transition-colors duration-300">
-                Marque employeur
-              </span>
-              <h1 className="text-xl md:text-4xl font-extralight text-[#0A0B2E] mb-8">
-                Attirez des talents et fidélisez vos collaborateurs en les valorisant en vidéos.
+            <div className="order-2 lg:order-1">
+              <h1 className="text-xl md:text-5xl font-extralight text-[#0A0B2E] mb-8 leading-relaxed">
+                Marque Employeur
               </h1>
-              <ul className="text-lg text-[#0A0B2E]/80 leading-relaxed mb-8 space-y-2">
+              <p className="text-lg font-normal text-[#0A0B2E]/70 leading-relaxed mb-2 space-y-2">
+                Attirez des talents et fidélisez vos collaborateurs en les valorisant en vidéos.
+              </p>
+              <ul className="text-lg font-light text-[#0A0B2E]/70 leading-relaxed mb-8">
                 <li className="flex items-center">
-                  <span className="w-2 h-2 bg-[#0A0B2E]/80 rounded-full mr-3"></span>
+                  <span className="w-1 h-1 bg-[#0A0B2E]/50 rounded-full mr-2"></span>
                   Vidéos Portraits métiers
                 </li>
                 <li className="flex items-center">
-                  <span className="w-2 h-2 bg-[#0A0B2E]/80 rounded-full mr-3"></span>
+                  <span className="w-1 h-1 bg-[#0A0B2E]/50 rounded-full mr-2"></span>
                   Vidéos Présentation Entreprise
                 </li>
                 <li className="flex items-center">
-                  <span className="w-2 h-2 bg-[#0A0B2E]/80 rounded-full mr-3"></span>
+                  <span className="w-1 h-1 bg-[#0A0B2E]/50 rounded-full mr-2"></span>
                   Vidéos Annonces recrutements
                 </li>
                 <li className="flex items-center">
-                  <span className="w-2 h-2 bg-[#0A0B2E]/80 rounded-full mr-3"></span>
+                  <span className="w-1 h-1 bg-[#0A0B2E]/50 rounded-full mr-2"></span>
                   Vidéos Formations
                 </li>
                 <li className="flex items-center">
-                  <span className="w-2 h-2 bg-[#0A0B2E]/80 rounded-full mr-3"></span>
+                  <span className="w-1 h-1 bg-[#0A0B2E]/50 rounded-full mr-2"></span>
                   Vidéos communication interne
                 </li>
               </ul>
             </div>
 
             {/* Right Image */}
-            <div className="relative overflow-hidden max-w-[80%] mx-auto group transform transition-transform duration-300 hover:scale-105 hover:shadow-2xl rounded-3xl">
+            <div className="relative overflow-hidden max-w-[80%] mx-auto group transform transition-transform duration-300 hover:scale-105 hover:shadow-2xl rounded-3xl order-1 lg:order-2">
               <div className="overflow-hidden rounded-3xl">
                 <Image
                   src="/images/happy_face_2.png"
