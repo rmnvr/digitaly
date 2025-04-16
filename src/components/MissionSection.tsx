@@ -2,6 +2,10 @@
 
 import Image from 'next/image';
 import React, { useEffect, useRef, useState } from 'react';
+import TextAnimation from './TextAnimation';
+import HoverStory from './HoverStory';
+import EmotionCycle from './EmotionCycle';
+
 
 interface MissionSectionProps {
   footerRef: React.RefObject<HTMLDivElement>;
@@ -38,8 +42,18 @@ const MissionSection: React.FC<MissionSectionProps> = ({ footerRef }) => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-24 bg-white">
+    <section ref={sectionRef} className="pb-24 bg-white">
       <div className="container mx-auto px-4">
+
+        {/*Promises*/}
+        <div className="container mx-auto px-4 mt-24 mb-40 mobile-hidden">
+          <div className="flex flex-col gap-12 lg:gap-28 text-2xl md:text-4xl font-bold italic text-[#0A0B2E]/80">
+            <TextAnimation />
+            <HoverStory />
+            <EmotionCycle />
+          </div>
+        </div>
+
         {/* Agency Description */}
         <div className={`my-20 opacity-0 ${isVisible ? 'animate-[fadeIn_0.6s_ease-in-out_forwards]' : ''}`}>
           <div className="grid lg:grid-cols-2 gap-12 items-center">
