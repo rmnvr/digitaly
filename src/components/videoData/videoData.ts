@@ -15,28 +15,28 @@ const videoData = [
     component: AgeDorVideo,
   },
   {
-    id: 'zfkLExgz6D8',
-    title: 'Vittori',
-    gif: "/gifs/Vittori.gif",
-    component: VittoriVideo,
-  },
-  {
-    id: 'sk1bz-QY0IQ',
-    title: 'Grrranit',
-    gif: "/gifs/Grrranit_Doc.gif",
-    component: GrrranitDocVideo,
-  },
-  {
     id: 'w0TDMYj7lfQ',
     title: 'Volvo',
     gif: "/gifs/Volvo.gif",
     component: VolvoVideo,
   },
   {
+    id: 'zfkLExgz6D8',
+    title: 'Vittori',
+    gif: "/gifs/Vittori.gif",
+    component: VittoriVideo,
+  },
+  {
     id: 'v8V_uDSbOMs',
     title: 'Impakt Immo',
     gif: "/gifs/Impakt.gif",
     component: ImpaktImmoVideo,
+  },
+  {
+    id: 'sk1bz-QY0IQ',
+    title: 'Grrranit',
+    gif: "/gifs/Grrranit_Doc.gif",
+    component: GrrranitDocVideo,
   },
   {
     id: 'eQ0omQcjH5E',

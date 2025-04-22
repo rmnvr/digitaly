@@ -14,13 +14,13 @@ const Footer = forwardRef<HTMLDivElement, React.HTMLProps<HTMLDivElement>>((prop
               <h3 className="text-lg font-bold mb-4">UN PROJET VIDEO ?</h3>
               <a
                 href="tel:+33384570226"
-                className="block mb-2 hover:text-gray-300"
+                className="block mb-2 hover:text-secondary"
               >
                 03 84 57 02 26
               </a>
               <a
                 href="mailto:hello@digitaly.pro"
-                className="text-white hover:text-gray-300 font-bold"
+                className="text-white hover:text-secondary font-bold"
               >
                 hello@digitaly.pro
               </a>
@@ -31,7 +31,7 @@ const Footer = forwardRef<HTMLDivElement, React.HTMLProps<HTMLDivElement>>((prop
               <p className="mb-2">CV + infos sur</p>
               <a
                 href="mailto:contact@digitaly.pro"
-                className="text-white hover:text-gray-300 font-bold"
+                className="text-white hover:text-secondary font-bold"
               >
                 contact@digitaly.pro
               </a>
@@ -46,13 +46,13 @@ const Footer = forwardRef<HTMLDivElement, React.HTMLProps<HTMLDivElement>>((prop
 
           <div className="flex flex-col gap-6">
             <div className="flex gap-2 lg:gap-6">
-              <Link href="https://www.youtube.com/@Oz-Digitaly" className="hover:text-gray-300" target="_blank" rel="noopener noreferrer">
+              <Link href="https://www.youtube.com/@Oz-Digitaly" className="hover:text-secondary" target="_blank" rel="noopener noreferrer">
                 <FaYoutube size={20} />
               </Link>
-              <Link href="https://www.linkedin.com/in/oz-%F0%9F%A6%81-akca-9a0abb154/" className="hover:text-gray-300" target="_blank" rel="noopener noreferrer">
+              <Link href="https://www.linkedin.com/in/oz-%F0%9F%A6%81-akca-9a0abb154/" className="hover:text-secondary" target="_blank" rel="noopener noreferrer">
                 <FaLinkedinIn size={20} />
               </Link>
-              <Link href="https://www.instagram.com/oz_digitaly/" className="hover:text-gray-300" target="_blank" rel="noopener noreferrer">
+              <Link href="https://www.instagram.com/oz_digitaly/" className="hover:text-secondary" target="_blank" rel="noopener noreferrer">
                 <FaInstagram size={20} />
               </Link>
             </div>
@@ -60,13 +60,10 @@ const Footer = forwardRef<HTMLDivElement, React.HTMLProps<HTMLDivElement>>((prop
             {/* Liens légaux */}
             <div className="flex flex-col gap-2 text-sm">
               <span>© DIGITALY 2025</span>
-              <Link href="/mentions-legales" className="hover:text-gray-300" target="_blank" rel="noopener noreferrer">
+              <Link href="/legal" className="hover:text-secondary">
                 MENTIONS LÉGALES
               </Link>
-              <Link href="/confidentialite" className="hover:text-gray-300" target="_blank" rel="noopener noreferrer">
-                POLITIQUE DE CONFIDENTIALITÉ
-              </Link>
-              <Link href="/terms" className="hover:text-gray-300" target="_blank" rel="noopener noreferrer">
+              <Link href="/terms" className="hover:text-secondary">
                 CGU
               </Link>
             </div>

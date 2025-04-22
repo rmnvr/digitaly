@@ -7,6 +7,7 @@ import MissionSection from '@/components/MissionSection';
 import Footer from '@/components/Footer';
 import YoutubeLink from '@/components/YoutubeLink';
 import LogoBanner from '@/components/LogoBanner';
+import PromisesSection from '@/components/PromisesSection';
 
 export default function Home() {
   const footerRef = useRef<HTMLDivElement>(null!);
@@ -15,8 +16,9 @@ export default function Home() {
     <main>
       <HeroSection footerRef={footerRef} />
       <LogoBanner />
-      <MissionSection footerRef={footerRef} />
+      <PromisesSection />
       <Portfolio footerRef={footerRef} />
+      <MissionSection footerRef={footerRef} />
       <YoutubeLink />
       <Footer ref={footerRef} />
     </main>

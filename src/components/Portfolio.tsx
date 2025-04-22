@@ -135,7 +135,7 @@ const Portfolio: React.FC<PortfolioProps> = ({ footerRef }) => {
 
     const container = containerRef.current;
     let animationFrameId: number;
-    const SINGLE_SET_WIDTH = videoData.length * (350 + 16);
+    const SINGLE_SET_WIDTH = videoData.length * (400 + 16);
     const RESET_THRESHOLD = SINGLE_SET_WIDTH * 4; // Milieu des 8 copies
 
     // Positionnement initial au milieu (après le premier rendu)
@@ -196,7 +196,7 @@ const Portfolio: React.FC<PortfolioProps> = ({ footerRef }) => {
   }
 
   return (
-    <div className="portfolio overflow-hidden mb-20">
+    <div className="portfolio overflow-hidden my-32">
       <div
         ref={containerRef}
         className="flex gap-4 overflow-x-hidden w-full cursor-grab active:cursor-grabbing"
@@ -216,7 +216,7 @@ const Portfolio: React.FC<PortfolioProps> = ({ footerRef }) => {
           <div
             key={index}
             className="flex-none"
-            style={{ width: '350px' }}
+            style={{ width: '400px' }}
           >
             <VideoThumbnail
               videoId={video.id}

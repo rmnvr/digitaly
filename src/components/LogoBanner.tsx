@@ -94,7 +94,7 @@ const LogoBanner = () => {
     return () => {
       cancelAnimationFrame(animationFrameId);
     };
-  }, [isClient, SCROLL_SPEED, logos.length]);
+  }, [isClient, SCROLL_SPEED]);
 
   if (!isClient) {
     return (
@@ -102,7 +102,7 @@ const LogoBanner = () => {
         <div className="flex">
           {logos.map((logo, index) => (
             <div key={index} className="flex-none px-8 py-6">
-              <div className="w-32 h-20 bg-gray-200 animate-pulse" />
+              <div className="w-32 h-24 bg-gray-200 animate-pulse" />
             </div>
           ))}
         </div>
@@ -127,7 +127,7 @@ const LogoBanner = () => {
               alt={`Logo ${index + 1}`}
               width={logo.width}
               height={logo.height}
-              className="h-20 w-auto"
+              className="h-28 w-auto"
             />
           </div>
         ))}
