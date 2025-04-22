@@ -2,14 +2,24 @@
 
 import Image from 'next/image';
 import React, { useEffect, useRef, useState } from 'react';
-import TextAnimation from './TextAnimation';
-import HoverStory from './HoverStory';
-import EmotionCycle from './EmotionCycle';
-
 
 interface MissionSectionProps {
   footerRef: React.RefObject<HTMLDivElement>;
 }
+
+const commercialList = [
+  "Film promotionnel",
+  "Spot publicitaire",
+  "Témoignages clients",
+  "Corporate"
+]
+
+const brandList = [
+  "Film marque employeur",
+  "Portraits collaborateurs & métiers",
+  "Communication interne",
+  "Formations"
+]
 
 const MissionSection: React.FC<MissionSectionProps> = ({ footerRef }) => {
   const sectionRef = useRef<HTMLElement>(null);
@@ -42,23 +52,14 @@ const MissionSection: React.FC<MissionSectionProps> = ({ footerRef }) => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="pb-24 bg-white">
+    <section ref={sectionRef} className="pb-9 bg-white">
       <div className="container mx-auto px-4">
 
-        {/*Promises*/}
-        <div className="container mx-auto px-4 mt-24 mb-40 mobile-hidden">
-          <div className="flex flex-col gap-12 lg:gap-28 text-2xl md:text-4xl font-bold italic text-[#0A0B2E]/80">
-            <TextAnimation />
-            <HoverStory />
-            <EmotionCycle />
-          </div>
-        </div>
-
         {/* Agency Description */}
-        <div className={`my-20 opacity-0 ${isVisible ? 'animate-[fadeIn_0.6s_ease-in-out_forwards]' : ''}`}>
+        <div className={`my-12 py-12 px-6 lg:my-20 lg:py-20 lg:px-12 opacity-0 ${isVisible ? 'animate-[fadeIn_0.6s_ease-in-out_forwards]' : ''} border border-[#0A0B2E]/10 rounded-3xl`}>
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left Image */}
-            <div className="relative overflow-hidden max-w-[80%] mx-auto group transform transition-transform duration-300 hover:scale-105 hover:shadow-2xl rounded-3xl">
+            <div className="relative overflow-hidden max-w[90%] lg:max-w-[80%] mx-auto group transform transition-transform duration-300 hover:scale-105 hover:shadow-2xl rounded-3xl">
               <div className="overflow-hidden rounded-3xl">
                 <Image
                   src="/images/happy_face_1.png"
@@ -78,71 +79,66 @@ const MissionSection: React.FC<MissionSectionProps> = ({ footerRef }) => {
               <span className="inline-block px-4 py-2 rounded-full text-sm border border-[#0A0B2E]/20 text-[#0A0B2E] mb-4 uppercase hover:bg-[#0A0B2E] hover:text-white transition-colors duration-300">
                 Commerciale
               </span>
-              <h1 className="text-xl md:text-4xl font-extralight text-[#0A0B2E] mb-8 leading-relaxed">
-                Renforcez votre image de marque et votre notoriété,<br />
-                démarquez-vous de vos concurrents et augmentez votre
-                visibilité.
-              </h1>
-              <ul className="text-lg text-[#0A0B2E]/80 leading-relaxed mb-8 space-y-2">
-                <li className="flex items-center transform hover:translate-x-2 transition-transform duration-200">
-                  <span className="w-2 h-2 bg-[#0A0B2E]/80 rounded-full mr-3"></span>
-                  Présentation d&apos;entreprises
-                </li>
-                <li className="flex items-center transform hover:translate-x-2 transition-transform duration-200">
-                  <span className="w-2 h-2 bg-[#0A0B2E]/80 rounded-full mr-3"></span>
-                  Pubs commerciales
-                </li>
-                <li className="flex items-center transform hover:translate-x-2 transition-transform duration-200">
-                  <span className="w-2 h-2 bg-[#0A0B2E]/80 rounded-full mr-3"></span>
-                  Témoignages de clients
-                </li>
-                <li className="flex items-center transform hover:translate-x-2 transition-transform duration-200">
-                  <span className="w-2 h-2 bg-[#0A0B2E]/80 rounded-full mr-3"></span>
-                  Corporate
-                </li>
+              <ul className="text-lg font-light text-[#0A0B2E]/70 leading-relaxed mb-8">
+                {
+                  commercialList.map(listItem => {
+                    return (<li key={listItem} className="flex items-center">
+                      <span className="w-1 h-1 bg-[#0A0B2E]/50 rounded-full mr-2"></span>
+                      {listItem}
+                    </li>)
+                  })
+                }
               </ul>
+              <p className="text-lg font-normal text-[#0A0B2E]/70 leading-relaxed mb-8 space-y-2">
+                Renforcez votre image et votre notoriété,<br />
+                démarquez-vous et augmentez votre visibilité.
+              </p>
+              <div className="flex justify-left">
+                <button
+                  className="px-6 py-3 bg-primary text-white rounded-full text-base hover:bg-secondary hover:text-primary transition-colors duration-300 uppercase"
+                  onClick={handleClick}
+                >
+                  J&apos;ai un projet
+                </button>
+              </div>
             </div>
           </div>
         </div>
 
         {/* Agency Description */}
-        <div className={`mb-24 opacity-0 ${isVisible ? 'animate-[fadeIn_0.6s_ease-in-out_forwards]' : ''}`}>
+        <div className={`mt-12 py-12 px-6 lg:mt-20 lg:py-20 lg:px-12 opacity-0 ${isVisible ? 'animate-[fadeIn_0.6s_ease-in-out_forwards]' : ''} border border-[#0A0B2E]/10 rounded-3xl`}>
           <div className="grid lg:grid-cols-2 gap-12 items-center">
 
             {/* Left Content */}
-            <div>
+            <div className="order-2 lg:order-1">
               <span className="inline-block px-4 py-2 rounded-full text-sm border border-[#0A0B2E]/20 text-[#0A0B2E] mb-4 uppercase hover:bg-[#0A0B2E] hover:text-white transition-colors duration-300">
                 Marque employeur
               </span>
-              <h1 className="text-xl md:text-4xl font-extralight text-[#0A0B2E] mb-8">
-                Attirez des talents et fidélisez vos collaborateurs en les valorisant en vidéos.
-              </h1>
-              <ul className="text-lg text-[#0A0B2E]/80 leading-relaxed mb-8 space-y-2">
-                <li className="flex items-center">
-                  <span className="w-2 h-2 bg-[#0A0B2E]/80 rounded-full mr-3"></span>
-                  Vidéos Portraits métiers
-                </li>
-                <li className="flex items-center">
-                  <span className="w-2 h-2 bg-[#0A0B2E]/80 rounded-full mr-3"></span>
-                  Vidéos Présentation Entreprise
-                </li>
-                <li className="flex items-center">
-                  <span className="w-2 h-2 bg-[#0A0B2E]/80 rounded-full mr-3"></span>
-                  Vidéos Annonces recrutements
-                </li>
-                <li className="flex items-center">
-                  <span className="w-2 h-2 bg-[#0A0B2E]/80 rounded-full mr-3"></span>
-                  Vidéos Formations
-                </li>
-                <li className="flex items-center">
-                  <span className="w-2 h-2 bg-[#0A0B2E]/80 rounded-full mr-3"></span>
-                  Vidéos communication interne
-                </li>
+              <ul className="text-lg font-light text-[#0A0B2E]/70 leading-relaxed mb-8">
+                {
+                  brandList.map(listItem => {
+                    return (<li key={listItem} className="flex items-center">
+                      <span className="w-1 h-1 bg-[#0A0B2E]/50 rounded-full mr-2"></span>
+                      {listItem}
+                    </li>)
+                  })
+                }
               </ul>
+              <p className="text-lg font-normal text-[#0A0B2E]/70 leading-relaxed mb-8 space-y-2">
+                Attirez des talents et fidélisez vos collaborateurs en les valorisant en vidéos.
+              </p>
+              <div className="flex justify-left">
+                <button
+                  className="px-6 py-3 bg-primary text-white rounded-full text-base hover:bg-secondary hover:text-primary transition-colors duration-300 uppercase"
+                  onClick={handleClick}
+                >
+                  J&apos;ai un projet
+                </button>
+              </div>
             </div>
 
             {/* Right Image */}
-            <div className="relative overflow-hidden max-w-[80%] mx-auto group transform transition-transform duration-300 hover:scale-105 hover:shadow-2xl rounded-3xl">
+            <div className="relative overflow-hidden max-w[90%] lg:max-w-[80%] mx-auto group transform transition-transform duration-300 hover:scale-105 hover:shadow-2xl rounded-3xl order-1 lg:order-2">
               <div className="overflow-hidden rounded-3xl">
                 <Image
                   src="/images/happy_face_2.png"
@@ -157,15 +153,6 @@ const MissionSection: React.FC<MissionSectionProps> = ({ footerRef }) => {
               </div>
             </div>
           </div>
-        </div>
-
-        <div className="flex justify-center my-12">
-          <button
-            className="my-6 px-6 py-3 bg-primary text-white rounded-full text-base hover:bg-secondary hover:text-primary transition-colors duration-300 uppercase"
-            onClick={handleClick}
-          >
-            J&apos;ai un projet
-          </button>
         </div>
 
       </div>

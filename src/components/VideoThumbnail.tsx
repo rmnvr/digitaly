@@ -47,7 +47,7 @@ const VideoThumbnail: React.FC<VideoThumbnailProps> = ({ videoId, title, gif, pr
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
           >
-            <div className="relative w-[350px] h-[230px] overflow-hidden rounded-xl">
+            <div className="relative w-[400px] h-[263px] overflow-hidden rounded-xl">
               {/* GIF uniquement sur les écrans non mobiles */}
               {!isMobile && (
                 <div className={`absolute inset-0 transition-opacity duration-500 ${isHovered ? 'opacity-100' : 'opacity-0'

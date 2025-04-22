@@ -16,6 +16,7 @@ export default {
         foreground: "var(--foreground)",
         primary: "var(--primary)",
         secondary: "var(--secondary)",
+        'secondary-50': "var(--secondary-50)",
       },
       keyframes: {
         fadeIn: {
