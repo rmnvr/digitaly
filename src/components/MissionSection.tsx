@@ -78,29 +78,28 @@ const MissionSection: React.FC<MissionSectionProps> = ({ footerRef }) => {
               <span className="inline-block px-4 py-2 rounded-full text-sm border border-[#0A0B2E]/20 text-[#0A0B2E] mb-4 uppercase hover:bg-[#0A0B2E] hover:text-white transition-colors duration-300">
                 Commerciale
               </span>
-              <h1 className="text-xl md:text-4xl font-extralight text-[#0A0B2E] mb-8 leading-relaxed">
-                Renforcez votre image de marque et votre notoriété,<br />
-                démarquez-vous de vos concurrents et augmentez votre
-                visibilité.
-              </h1>
-              <ul className="text-lg text-[#0A0B2E]/80 leading-relaxed mb-8 space-y-2">
-                <li className="flex items-center transform hover:translate-x-2 transition-transform duration-200">
-                  <span className="w-2 h-2 bg-[#0A0B2E]/80 rounded-full mr-3"></span>
+              <ul className="text-lg font-light text-[#0A0B2E]/70 leading-relaxed mb-8">
+                <li className="flex items-center">
+                  <span className="w-1 h-1 bg-[#0A0B2E]/50 rounded-full mr-2"></span>
                   Présentation d&apos;entreprises
                 </li>
-                <li className="flex items-center transform hover:translate-x-2 transition-transform duration-200">
-                  <span className="w-2 h-2 bg-[#0A0B2E]/80 rounded-full mr-3"></span>
+                <li className="flex items-center">
+                  <span className="w-1 h-1 bg-[#0A0B2E]/50 rounded-full mr-2"></span>
                   Pubs commerciales
                 </li>
-                <li className="flex items-center transform hover:translate-x-2 transition-transform duration-200">
-                  <span className="w-2 h-2 bg-[#0A0B2E]/80 rounded-full mr-3"></span>
+                <li className="flex items-center">
+                  <span className="w-1 h-1 bg-[#0A0B2E]/50 rounded-full mr-2"></span>
                   Témoignages de clients
                 </li>
-                <li className="flex items-center transform hover:translate-x-2 transition-transform duration-200">
-                  <span className="w-2 h-2 bg-[#0A0B2E]/80 rounded-full mr-3"></span>
+                <li className="flex items-center">
+                  <span className="w-1 h-1 bg-[#0A0B2E]/50 rounded-full mr-2"></span>
                   Corporate
                 </li>
               </ul>
+              <p className="text-lg font-normal text-[#0A0B2E]/70 leading-relaxed mb-2 space-y-2">
+                Renforcez votre image et votre notoriété,<br />
+                démarquez-vous et augmentez votre visibilité.
+              </p>
             </div>
           </div>
         </div>
@@ -110,48 +109,46 @@ const MissionSection: React.FC<MissionSectionProps> = ({ footerRef }) => {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
 
             {/* Left Content */}
-            <div>
-              <span className="inline-block px-4 py-2 rounded-full text-sm border border-[#0A0B2E]/20 text-[#0A0B2E] mb-4 uppercase hover:bg-[#0A0B2E] hover:text-white transition-colors duration-300">
-                Marque employeur
-              </span>
-              <h1 className="text-xl md:text-4xl font-extralight text-[#0A0B2E] mb-8">
-                Attirez des talents et fidélisez vos collaborateurs en les valorisant en vidéos.
-              </h1>
-              <ul className="text-lg text-[#0A0B2E]/80 leading-relaxed mb-8 space-y-2">
+            <div className="order-2 lg:order-1">              <span className="inline-block px-4 py-2 rounded-full text-sm border border-[#0A0B2E]/20 text-[#0A0B2E] mb-4 uppercase hover:bg-[#0A0B2E] hover:text-white transition-colors duration-300">
+              Marque employeur
+            </span>
+              <ul className="text-lg font-light text-[#0A0B2E]/70 leading-relaxed mb-8">
                 <li className="flex items-center">
-                  <span className="w-2 h-2 bg-[#0A0B2E]/80 rounded-full mr-3"></span>
+                  <span className="w-1 h-1 bg-[#0A0B2E]/50 rounded-full mr-2"></span>
                   Vidéos Portraits métiers
                 </li>
                 <li className="flex items-center">
-                  <span className="w-2 h-2 bg-[#0A0B2E]/80 rounded-full mr-3"></span>
+                  <span className="w-1 h-1 bg-[#0A0B2E]/50 rounded-full mr-2"></span>
                   Vidéos Présentation Entreprise
                 </li>
                 <li className="flex items-center">
-                  <span className="w-2 h-2 bg-[#0A0B2E]/80 rounded-full mr-3"></span>
+                  <span className="w-1 h-1 bg-[#0A0B2E]/50 rounded-full mr-2"></span>
                   Vidéos Annonces recrutements
                 </li>
                 <li className="flex items-center">
-                  <span className="w-2 h-2 bg-[#0A0B2E]/80 rounded-full mr-3"></span>
+                  <span className="w-1 h-1 bg-[#0A0B2E]/50 rounded-full mr-2"></span>
                   Vidéos Formations
                 </li>
                 <li className="flex items-center">
-                  <span className="w-2 h-2 bg-[#0A0B2E]/80 rounded-full mr-3"></span>
+                  <span className="w-1 h-1 bg-[#0A0B2E]/50 rounded-full mr-2"></span>
                   Vidéos communication interne
                 </li>
               </ul>
+              <p className="text-lg font-normal text-[#0A0B2E]/70 leading-relaxed mb-2 space-y-2">
+                Attirez des talents et fidélisez vos collaborateurs en les valorisant en vidéos.
+              </p>
             </div>
 
             {/* Right Image */}
-            <div className="relative overflow-hidden max-w-[80%] mx-auto group transform transition-transform duration-300 hover:scale-105 hover:shadow-2xl rounded-3xl">
-              <div className="overflow-hidden rounded-3xl">
-                <Image
-                  src="/images/happy_face_2.png"
-                  alt="Studio de production vidéo avec fond vert"
-                  className="w-[102%] h-auto object-cover transition-transform duration-700 scale-105 group-hover:scale-110"
-                  width={500}
-                  height={300}
-                />
-              </div>
+            <div className="relative overflow-hidden max-w-[80%] mx-auto group transform transition-transform duration-300 hover:scale-105 hover:shadow-2xl rounded-3xl order-1 lg:order-2">              <div className="overflow-hidden rounded-3xl">
+              <Image
+                src="/images/happy_face_2.png"
+                alt="Studio de production vidéo avec fond vert"
+                className="w-[102%] h-auto object-cover transition-transform duration-700 scale-105 group-hover:scale-110"
+                width={500}
+                height={300}
+              />
+            </div>
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center backdrop-blur-sm">
                 <p className="text-white text-center px-4 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">Happy face ^^</p>
               </div>
