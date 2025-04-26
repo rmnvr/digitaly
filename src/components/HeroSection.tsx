@@ -79,10 +79,10 @@ const HeroSection = ({ footerRef }: HeroSectionProps) => {
   })
 
   return (
-    <div className="relative h-screen w-full overflow-hidden">
+    <div className="relative h-[calc(100vh+5px)] w-full overflow-hidden">
       {isLoading && (
         <div
-          className={`fixed inset-0 z-[9999] flex items-center justify-center bg-black
+          className={`fixed inset-0 z-[100] flex items-center justify-center bg-black
             transition-transform duration-700 ease-in-out
             ${isLoadingHidden ? '-translate-y-full' : ''}`}
         >
@@ -100,15 +100,17 @@ const HeroSection = ({ footerRef }: HeroSectionProps) => {
 
       <div className="absolute inset-0 flex flex-col items-center justify-center px-4 md:px-8">
         <Navigation footerRef={footerRef} />
-        <Image
-          src="/images/digitaly_logo.svg"
-          alt="Digitaly Logo"
-          width={150}
-          height={200}
-          className="absolute top-4 left-4 z-50 h-auto w-auto 
+        <div className='z-[101]'>
+          <Image
+            src="/images/digitaly_logo.svg"
+            alt="Digitaly Logo"
+            width={150}
+            height={200}
+            className="absolute top-4 left-4 z-50 h-auto w-auto 
             max-w-[80px] md:max-w-[110px]"
-          priority
-        />
+            priority
+          />
+        </div>
       </div>
     </div>
   );

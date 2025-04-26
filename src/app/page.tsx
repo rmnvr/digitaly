@@ -18,8 +18,8 @@ export default function Home() {
       <LogoBanner />
       <PromisesSection />
       <Portfolio footerRef={footerRef} />
-      <MissionSection footerRef={footerRef} />
       <YoutubeLink />
+      <MissionSection footerRef={footerRef} />
       <Footer ref={footerRef} />
     </main>
   );

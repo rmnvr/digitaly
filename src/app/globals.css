@@ -12,8 +12,8 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #ffffff;
+    --foreground: #171717;
     --primary: #030243;
     --secondary: #FF6B4A;
     --secondary-50: #fea08b;
@@ -129,10 +129,4 @@ body {
 .rotate-in {
   animation: appear 1s forwards;
   /* Animation pour faire apparaître "histoires" */
-}
-
-@media (max-width: 1024px) {
-  .mobile-hidden {
-    display: none;
-  }
 }
