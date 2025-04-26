@@ -59,7 +59,6 @@ const HeroSection = ({ footerRef }: HeroSectionProps) => {
   const [showLoader, setShowLoader] = useState(true);
 
   useEffect(() => {
-
     const handleVimeoLoad = () => {
       setShowLoader(false);
       setIsLoadingHidden(true);
@@ -67,8 +66,17 @@ const HeroSection = ({ footerRef }: HeroSectionProps) => {
     };
 
     document.addEventListener('vimeoLoaded', handleVimeoLoad);
+
+    // Timeout de secours (ex : 10 secondes)
+    const fallbackTimeout = setTimeout(() => {
+      setShowLoader(false);
+      setIsLoadingHidden(true);
+      setIsLoading(false);
+    }, 3000);
+
     return () => {
       document.removeEventListener('vimeoLoaded', handleVimeoLoad);
+      clearTimeout(fallbackTimeout);
     };
   }, []);
 
