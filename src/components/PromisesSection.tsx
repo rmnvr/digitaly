@@ -22,25 +22,23 @@ const PromisesSection = () => {
   return (
     <div
       ref={sectionRef}
-      className="flex justify-between container mx-auto px-4 my-44 content-center"
+      className="flex 2xl:justify-evenly container mx-auto px-4 my-32 lg:my-44 content-center"
     >
-      <div className='grow small-screen-hidden'>
-        <Image
-          src="/images/digitaly_logo.svg"
-          alt="Digitaly Logo"
-          width={150}
-          height={200}
-          className="h-full w-auto 
-            max-w-[80px] md:max-w-[500px]"
-          priority
-        />
-      </div>
+      <Image
+        src="/images/digitaly_logo.svg"
+        alt="Digitaly Logo"
+        width={300}
+        height={300}
+        className="max-h-[272px] 2xl:max-h-[304px] small-screen-hidden xl:ml-[-20px] 2xl:ml-[-40px]"
+        priority
+      />
+
       <div
         className={`
-          flex flex-col gap-12 text-5xl md:text-5xl font-light text-left xl:text-right text-[#0A0B2E]/80 align-middle
+          flex flex-col gap-12 text-3xl md:text-4xl 2xl:text-5xl font-light text-left xl:text-right text-[#0A0B2E]/80 align-middle
         `}
       >
-        <div className=' flex flex-col gap-16'>
+        <div className=' flex flex-col gap-16 2xl:gap-20'>
           <p className={`transition-all duration-1000 ease-out delay-300
           ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>L&apos;humain est marqué par les <span className="text-secondary font-medium ">histoires,</span></p>
           <p className={`transition-all duration-1000 ease-out delay-[700ms]
