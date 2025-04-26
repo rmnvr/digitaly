@@ -100,17 +100,15 @@ const HeroSection = ({ footerRef }: HeroSectionProps) => {
 
       <div className="absolute inset-0 flex flex-col items-center justify-center px-4 md:px-8">
         <Navigation footerRef={footerRef} />
-        <div className='z-[101]'>
-          <Image
-            src="/images/digitaly_logo.svg"
-            alt="Digitaly Logo"
-            width={150}
-            height={200}
-            className="absolute top-4 left-4 z-50 h-auto w-auto 
+        <Image
+          src="/images/digitaly_logo.svg"
+          alt="Digitaly Logo"
+          width={150}
+          height={200}
+          className="absolute top-4 left-4 z-50 h-auto w-auto 
             max-w-[80px] md:max-w-[110px]"
-            priority
-          />
-        </div>
+          priority
+        />
       </div>
     </div>
   );
