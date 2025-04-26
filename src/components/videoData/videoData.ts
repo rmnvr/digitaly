@@ -22,7 +22,7 @@ const videoData = [
   },
   {
     id: 'GLvYkmyYcKY',
-    title: 'Teaser - Théâtre Grrranit',
+    title: 'Aftermovie - Théâtre Grrranit',
     gif: "/gifs/Grrranit_Spectacle.gif",
     component: GrrranitSpecVideo,
   },
