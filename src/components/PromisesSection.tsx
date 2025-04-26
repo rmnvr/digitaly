@@ -22,7 +22,7 @@ const PromisesSection = () => {
   return (
     <div
       ref={sectionRef}
-      className="flex 2xl:justify-evenly container mx-auto px-4 my-32 lg:my-44 content-center"
+      className="flex lg:justify-around 2xl:justify-evenly container mx-auto px-4 my-32 lg:my-44 content-center"
     >
       <Image
         src="/images/digitaly_logo.svg"
