@@ -79,7 +79,7 @@ const HeroSection = ({ footerRef }: HeroSectionProps) => {
   })
 
   return (
-    <div className="relative h-[calc(100vh+5px)] w-full overflow-hidden">
+    <div className="relative h-[calc(100vh+10px)] w-full overflow-hidden mt-[-5px]">
       {isLoading && (
         <div
           className={`fixed inset-0 z-[100] flex items-center justify-center bg-black
