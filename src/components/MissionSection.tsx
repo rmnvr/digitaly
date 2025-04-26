@@ -11,11 +11,11 @@ const commercialList = [
   "Film promotionnel",
   "Spot publicitaire",
   "Témoignages clients",
-  "Corporate"
+  "Contenus réseaux sociaux"
 ]
 
 const brandList = [
-  "Film marque employeur",
+  "Film culture d'entreprise",
   "Portraits collaborateurs & métiers",
   "Communication interne",
   "Formations"
@@ -56,13 +56,13 @@ const MissionSection: React.FC<MissionSectionProps> = ({ footerRef }) => {
       <div className="container mx-auto px-4">
 
         {/* Agency Description */}
-        <div className={`my-12 py-12 px-6 lg:my-20 lg:py-20 lg:px-12 opacity-0 ${isVisible ? 'animate-[fadeIn_0.6s_ease-in-out_forwards]' : ''} border border-[#0A0B2E]/10 rounded-3xl`}>
+        <div className={`mb-12 py-12 px-6 lg:my-20 lg:py-20 lg:px-12 opacity-0 ${isVisible ? 'animate-[fadeIn_0.8s_ease-in-out_forwards]' : ''} border border-[#0A0B2E]/10 rounded-3xl`}>
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left Image */}
             <div className="relative overflow-hidden max-w[90%] lg:max-w-[80%] mx-auto group transform transition-transform duration-300 hover:scale-105 hover:shadow-2xl rounded-3xl">
               <div className="overflow-hidden rounded-3xl">
                 <Image
-                  src="/images/happy_face_1.png"
+                  src="/images/commercial.jpg"
                   alt="Studio de production vidéo avec fond vert"
                   className="w-[102%] h-auto object-cover transition-transform duration-700 scale-105 group-hover:scale-110"
                   width={500}
@@ -70,7 +70,7 @@ const MissionSection: React.FC<MissionSectionProps> = ({ footerRef }) => {
                 />
               </div>
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center backdrop-blur-sm">
-                <p className="text-white text-center px-4 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">Happy Face ^^</p>
+                <p className="text-white text-center px-4 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">Commerciale</p>
               </div>
             </div>
 
@@ -138,10 +138,10 @@ const MissionSection: React.FC<MissionSectionProps> = ({ footerRef }) => {
             </div>
 
             {/* Right Image */}
-            <div className="relative overflow-hidden max-w[90%] lg:max-w-[80%] mx-auto group transform transition-transform duration-300 hover:scale-105 hover:shadow-2xl rounded-3xl order-1 lg:order-2">
+            <div className="relative overflow-hidden max-w-[90%] lg:max-w-[80%] mx-auto group transform transition-transform duration-300 hover:scale-105 hover:shadow-2xl rounded-3xl order-1 lg:order-2">
               <div className="overflow-hidden rounded-3xl">
                 <Image
-                  src="/images/happy_face_2.png"
+                  src="/images/marque_employeur.jpg"
                   alt="Studio de production vidéo avec fond vert"
                   className="w-[102%] h-auto object-cover transition-transform duration-700 scale-105 group-hover:scale-110"
                   width={500}
@@ -149,7 +149,7 @@ const MissionSection: React.FC<MissionSectionProps> = ({ footerRef }) => {
                 />
               </div>
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center backdrop-blur-sm">
-                <p className="text-white text-center px-4 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">Happy face ^^</p>
+                <p className="text-white text-center px-4 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">Marque Employeur</p>
               </div>
             </div>
           </div>

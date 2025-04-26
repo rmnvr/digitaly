@@ -10,11 +10,11 @@ const logos = [
   { src: '/logo/CAPEB.svg', width: 100, height: 50 },
   { src: '/logo/CMA.svg', width: 100, height: 50 },
   { src: '/logo/Cupra_OZ.svg', width: 100, height: 50 },
+  { src: '/logo/ROGER_MARTIN.svg', width: 100, height: 50 },
   { src: '/logo/Grand_BELFORT.svg', width: 100, height: 50 },
   { src: '/logo/Metalhom.svg', width: 100, height: 50 },
   { src: '/logo/Prefecture.svg', width: 100, height: 50 },
   { src: '/logo/RE_MAX.svg', width: 100, height: 50 },
-  { src: '/logo/ROGER_MARTIN.svg', width: 100, height: 50 },
   { src: '/logo/Ville_de_Belfort.svg', width: 100, height: 50 },
   { src: '/logo/VITTORI.svg', width: 100, height: 50 },
   { src: '/logo/VOLVO.svg', width: 100, height: 50 }
@@ -111,7 +111,7 @@ const LogoBanner = () => {
   }
 
   return (
-    <div className="overflow-hidden bg-primary relative">
+    <div className="mt-[-5px] overflow-hidden bg-primary relative">
       <div
         ref={scrollerRef}
         className="flex"
