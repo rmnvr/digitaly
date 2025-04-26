@@ -130,3 +130,9 @@ body {
   animation: appear 1s forwards;
   /* Animation pour faire apparaître "histoires" */
 }
+
+@media (max-width: 1280px) {
+  .small-screen-hidden {
+    display: none;
+  }
+}
