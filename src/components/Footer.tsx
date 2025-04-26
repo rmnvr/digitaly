@@ -5,6 +5,9 @@ import { FaInstagram, FaLinkedinIn, FaYoutube } from 'react-icons/fa';
 import React, { forwardRef } from 'react';
 
 const Footer = forwardRef<HTMLDivElement, React.HTMLProps<HTMLDivElement>>((props, ref) => {
+
+  const currentYear = new Date().getFullYear();
+
   return (
     <footer ref={ref} className="bg-primary text-white py-20 mt-12">
       <div className="container mx-auto px-4">
@@ -59,7 +62,7 @@ const Footer = forwardRef<HTMLDivElement, React.HTMLProps<HTMLDivElement>>((prop
 
             {/* Liens légaux */}
             <div className="flex flex-col gap-2 text-sm">
-              <span>© DIGITALY 2025</span>
+              <span>© DIGITALY {currentYear}</span>
               <Link href="/legal" className="hover:text-secondary">
                 MENTIONS LÉGALES
               </Link>

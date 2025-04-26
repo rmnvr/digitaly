@@ -196,7 +196,7 @@ const Portfolio: React.FC<PortfolioProps> = ({ footerRef }) => {
   }
 
   return (
-    <div className="portfolio overflow-hidden my-32">
+    <div className="portfolio overflow-hidden my-24">
       <div
         ref={containerRef}
         className="flex gap-4 overflow-x-hidden w-full cursor-grab active:cursor-grabbing"
