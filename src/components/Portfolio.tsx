@@ -39,6 +39,15 @@ const Portfolio: React.FC<PortfolioProps> = ({ footerRef }) => {
   const NORMAL_SPEED = 2; // Vitesse normale ajustée pour mobile
   const HOVER_SPEED = 1.05; // Vitesse de survol ajustée pour mobile
 
+  const [velocity, setVelocity] = useState(0);
+  const [lastX, setLastX] = useState(0);
+  const [lastTime, setLastTime] = useState(0);
+  const isAnimating = useRef(false);
+
+  const DECELERATION_FACTOR = 0.98; // Plus proche de 1 pour une décélération plus douce
+  const MIN_VELOCITY_THRESHOLD = 0.001; // Seuil plus bas pour une animation plus longue
+  const INITIAL_VELOCITY_THRESHOLD = 0.05; // Seuil plus bas pour déclencher l'inertie
+
   useEffect(() => {
     setIsClient(true);
   }, []);
@@ -83,6 +92,18 @@ const Portfolio: React.FC<PortfolioProps> = ({ footerRef }) => {
     const x = e.pageX - containerRef.current!.offsetLeft;
     const walk = (x - startX) * 0.8;
     dragDistance.current = Math.abs(walk);
+
+    // Calculer la vitesse
+    const currentTime = Date.now();
+    const timeDiff = currentTime - lastTime;
+    if (timeDiff > 0) {
+      const currentVelocity = (x - lastX) / timeDiff;
+      setVelocity(currentVelocity);
+    }
+
+    setLastX(x);
+    setLastTime(currentTime);
+
     if (dragDistance.current > 5) {
       setHasMoved(true);
     }
@@ -94,6 +115,18 @@ const Portfolio: React.FC<PortfolioProps> = ({ footerRef }) => {
     const x = e.touches[0].pageX - containerRef.current!.offsetLeft;
     const walk = (x - startX) * 0.8;
     dragDistance.current = Math.abs(walk);
+
+    // Calculer la vitesse
+    const currentTime = Date.now();
+    const timeDiff = currentTime - lastTime;
+    if (timeDiff > 0) {
+      const currentVelocity = (x - lastX) / timeDiff;
+      setVelocity(currentVelocity);
+    }
+
+    setLastX(x);
+    setLastTime(currentTime);
+
     if (dragDistance.current > 5) {
       setHasMoved(true);
     }
@@ -109,6 +142,61 @@ const Portfolio: React.FC<PortfolioProps> = ({ footerRef }) => {
     }
 
     setIsDragging(false);
+
+    // Démarrer l'animation d'inertie
+    if (Math.abs(velocity) > INITIAL_VELOCITY_THRESHOLD) {
+      isAnimating.current = true;
+      let currentVelocity = velocity;
+      let lastTimestamp = Date.now();
+
+      const animate = () => {
+        if (!isAnimating.current) return;
+
+        const now = Date.now();
+        const deltaTime = now - lastTimestamp;
+        lastTimestamp = now;
+
+        // Appliquer la décélération de manière plus progressive
+        currentVelocity *= DECELERATION_FACTOR;
+
+        if (containerRef.current) {
+          // Calculer le déplacement avec une courbe d'accélération
+          const displacement = currentVelocity * deltaTime;
+          containerRef.current.scrollLeft -= displacement;
+
+          // Vérifier les limites et ajuster la vitesse si nécessaire
+          const container = containerRef.current;
+          const SINGLE_SET_WIDTH = videoData.length * (400 + 16);
+          const RESET_THRESHOLD = SINGLE_SET_WIDTH * 4;
+
+          if (container.scrollLeft >= RESET_THRESHOLD) {
+            container.scrollLeft = RESET_THRESHOLD - SINGLE_SET_WIDTH;
+            currentVelocity *= 0.5; // Réduire la vitesse lors du reset
+          } else if (container.scrollLeft <= SINGLE_SET_WIDTH) {
+            container.scrollLeft = RESET_THRESHOLD - SINGLE_SET_WIDTH;
+            currentVelocity *= 0.5; // Réduire la vitesse lors du reset
+          }
+        }
+
+        // Continuer l'animation si la vitesse est encore significative
+        if (Math.abs(currentVelocity) > MIN_VELOCITY_THRESHOLD) {
+          requestAnimationFrame(animate);
+        } else {
+          // Transition finale plus douce
+          if (containerRef.current) {
+            containerRef.current.style.scrollBehavior = 'smooth';
+            setTimeout(() => {
+              if (containerRef.current) {
+                containerRef.current.style.scrollBehavior = 'auto';
+              }
+            }, 100);
+          }
+          isAnimating.current = false;
+        }
+      };
+
+      requestAnimationFrame(animate);
+    }
   };
 
   const handleVideoClick = (video: VideoInfo) => {
@@ -117,7 +205,7 @@ const Portfolio: React.FC<PortfolioProps> = ({ footerRef }) => {
   };
 
   useEffect(() => {
-    if (!containerRef.current || !isClient || isDragging) return;
+    if (!containerRef.current || !isClient || isDragging || isAnimating.current) return;
 
     const container = containerRef.current;
     let animationFrameId: number;
@@ -186,6 +274,11 @@ const Portfolio: React.FC<PortfolioProps> = ({ footerRef }) => {
       <div
         ref={containerRef}
         className="flex gap-4 overflow-x-hidden w-full cursor-grab active:cursor-grabbing"
+        style={{
+          scrollBehavior: 'auto',
+          WebkitOverflowScrolling: 'touch', // Pour iOS
+          overscrollBehavior: 'contain', // Pour éviter le scroll de la page
+        }}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => {
           setIsHovered(false);
