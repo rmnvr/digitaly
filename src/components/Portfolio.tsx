@@ -64,7 +64,7 @@ const Portfolio: React.FC<PortfolioProps> = ({ footerRef }) => {
       setPreloadedIframes(newIframes);
     };
 
-    preloadIframes();
+    // preloadIframes(); // Comment this line
   }, []);
 
   // Gestionnaires d'événements pour le défilement manuel
@@ -317,7 +317,7 @@ const Portfolio: React.FC<PortfolioProps> = ({ footerRef }) => {
       />
 
       {/* Hidden iframes for preloading */}
-      {Object.entries(preloadedIframes).map(([id, src]) => (
+      {/* {Object.entries(preloadedIframes).map(([id, src]) => (
         <iframe
           key={id}
           style={{ display: 'none' }}
@@ -326,7 +326,7 @@ const Portfolio: React.FC<PortfolioProps> = ({ footerRef }) => {
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
         />
-      ))}
+      ))} */}
     </div>
   );
 };
