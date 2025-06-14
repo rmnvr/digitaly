@@ -37,7 +37,7 @@ const VimeoPlayer = dynamic(() => Promise.resolve(() => {
           const iframe = document.querySelector('iframe');
           if (iframe) {
             const player = new Player(iframe);
-            player.on('loadeddata', () => { // Changed 'loaded' to 'loadeddata'
+            player.on('canplay', () => { // Changed 'loadeddata' to 'canplay'
               document.dispatchEvent(new Event('vimeoLoaded')); // Écoute l'événement 'ready'
             });
           } else {

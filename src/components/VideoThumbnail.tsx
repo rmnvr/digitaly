@@ -28,6 +28,10 @@ const VideoThumbnail: React.FC<VideoThumbnailProps> = ({ videoId, title, gif, pr
     };
   }, []);
 
+  if (!gif) {
+    console.error(`VideoThumbnail: GIF path is missing for videoId: ${videoId}, title: ${title}`);
+  }
+
   const handleInfoClick = (e: React.MouseEvent) => {
     if (preventClick) {
       e.preventDefault();
@@ -49,7 +53,7 @@ const VideoThumbnail: React.FC<VideoThumbnailProps> = ({ videoId, title, gif, pr
           >
             <div className="relative w-[400px] h-[263px] overflow-hidden rounded-xl">
               {/* GIF uniquement sur les écrans non mobiles */}
-              {!isMobile && (
+              {!isMobile && gif && ( // Added '&& gif' here
                 <div className={`absolute inset-0 transition-opacity duration-500 ${isHovered ? 'opacity-100' : 'opacity-0'
                   }`}>
                   <Image
