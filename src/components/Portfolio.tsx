@@ -30,9 +30,6 @@ const Portfolio: React.FC<PortfolioProps> = ({ footerRef }) => {
   const [showLightbox, setShowLightbox] = useState(false);
   const [selectedVideo, setSelectedVideo] = useState<VideoInfo | null>(null);
 
-  // State to hold preloaded iframe URLs
-  const [preloadedIframes, setPreloadedIframes] = useState<{ [key: string]: string }>({});
-
   const transitionInProgress = useRef(false);
   const lastTimestamp = useRef(0);
 
@@ -54,15 +51,6 @@ const Portfolio: React.FC<PortfolioProps> = ({ footerRef }) => {
 
   useEffect(() => {
     setVideos(Array.from({ length: 8 }, () => videoData).flat());
-
-    // Preload iframes without autoplay
-    const preloadIframes = () => {
-      const newIframes: { [key: string]: string } = {};
-      videoData.forEach(video => {
-        newIframes[video.id] = `https://www.youtube.com/embed/${video.id}?modestbranding=1&controls=1&rel=0&showinfo=0`; // No autoplay
-      });
-      setPreloadedIframes(newIframes);
-    };
 
     // preloadIframes(); // Comment this line
   }, []);

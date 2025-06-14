@@ -41,7 +41,7 @@ const VimeoPlayer = dynamic(() => Promise.resolve(() => {
               document.dispatchEvent(new Event('vimeoLoaded')); // Écoute l'événement 'ready'
             });
           } else {
-            console.error('Iframe non trouvé'); // Log si l'iframe n'est pas trouvé
+            // Error case can be handled here if needed in the future
           }
         }}
       />
@@ -59,37 +59,24 @@ const HeroSection = ({ footerRef }: HeroSectionProps) => {
   const [showLoader, setShowLoader] = useState(true);
 
   useEffect(() => {
-    console.log('useEffect: Adding vimeoLoaded event listener and setting fallback timeout');
-
     const handleVimeoLoad = () => {
-      console.log('vimeoLoaded event received');
       setShowLoader(false);
-      console.log('showLoader set to false');
       setIsLoadingHidden(true);
-      console.log('isLoadingHidden set to true');
       setTimeout(() => {
         setIsLoading(false);
-        console.log('isLoading set to false (after timeout)');
       }, 700);
     };
 
     document.addEventListener('vimeoLoaded', handleVimeoLoad);
-    console.log('vimeoLoaded event listener added');
 
     // Timeout de secours (ex : 10 secondes)
     const fallbackTimeout = setTimeout(() => {
-      console.log('Fallback timeout triggered');
       setShowLoader(false);
-      console.log('showLoader set to false (fallback)');
       setIsLoadingHidden(true);
-      console.log('isLoadingHidden set to true (fallback)');
       setIsLoading(false);
-      console.log('isLoading set to false (fallback)');
     }, 3000);
-    console.log('Fallback timeout set');
 
     return () => {
-      console.log('useEffect cleanup: Removing vimeoLoaded event listener and clearing fallback timeout');
       document.removeEventListener('vimeoLoaded', handleVimeoLoad);
       clearTimeout(fallbackTimeout);
     };
