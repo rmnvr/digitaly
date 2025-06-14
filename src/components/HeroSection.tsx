@@ -41,7 +41,7 @@ const VimeoPlayer = dynamic(() => Promise.resolve(() => {
               document.dispatchEvent(new Event('vimeoLoaded')); // Écoute l'événement 'ready'
             });
           } else {
-            console.error('Iframe non trouvé'); // Log si l'iframe n'est pas trouvé
+            // Error case can be handled here if needed in the future
           }
         }}
       />
@@ -62,7 +62,9 @@ const HeroSection = ({ footerRef }: HeroSectionProps) => {
     const handleVimeoLoad = () => {
       setShowLoader(false);
       setIsLoadingHidden(true);
-      setTimeout(() => setIsLoading(false), 700);
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 700);
     };
 
     document.addEventListener('vimeoLoaded', handleVimeoLoad);
