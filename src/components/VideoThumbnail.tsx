@@ -52,10 +52,9 @@ const VideoThumbnail: React.FC<VideoThumbnailProps> = ({ videoId, title, gif, pr
             onMouseLeave={() => setIsHovered(false)}
           >
             <div className="relative w-[400px] h-[263px] overflow-hidden rounded-xl">
-              {/* GIF uniquement sur les écrans non mobiles */}
-              {!isMobile && gif && ( // Added '&& gif' here
-                <div className={`absolute inset-0 transition-opacity duration-500 ${isHovered ? 'opacity-100' : 'opacity-0'
-                  }`}>
+              {/* GIF uniquement sur les écrans non mobiles et lors du survol */}
+              {!isMobile && gif && isHovered && (
+                <div className={`absolute inset-0 transition-opacity duration-500 opacity-100`}> {/* Opacity is always 100 when rendered */}
                   <Image
                     src={gif}
                     alt="Power GIF"
@@ -63,6 +62,7 @@ const VideoThumbnail: React.FC<VideoThumbnailProps> = ({ videoId, title, gif, pr
                     height={250}
                     className="object-cover w-full h-full"
                     objectFit='cover'
+                    priority // Optionally add priority if first hover experience is critical
                   />
                 </div>
               )}
