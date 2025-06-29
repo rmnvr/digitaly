@@ -58,7 +58,6 @@ const VideoThumbnail: React.FC<VideoThumbnailProps> = ({ videoId, title, gif, pr
                     width={360}
                     height={250}
                     className="object-cover w-full h-full"
-                    objectFit='cover'
                   />
                 </div>
               )}
@@ -72,7 +71,6 @@ const VideoThumbnail: React.FC<VideoThumbnailProps> = ({ videoId, title, gif, pr
                   width={360}
                   height={250}
                   className="object-cover w-full h-full scale-125 filter brightness-110 saturate-125"
-                  objectFit='cover'
                 />
               </div>
 
