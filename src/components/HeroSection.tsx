@@ -72,7 +72,7 @@ const HeroSection = ({ footerRef }: HeroSectionProps) => {
       setShowLoader(false);
       setIsLoadingHidden(true);
       setIsLoading(false);
-    }, 3000);
+    }, 3500);
 
     return () => {
       document.removeEventListener('vimeoLoaded', handleVimeoLoad);
