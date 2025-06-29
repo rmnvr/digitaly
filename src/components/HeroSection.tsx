@@ -37,7 +37,12 @@ const VimeoPlayer = dynamic(() => Promise.resolve(() => {
           const iframe = document.querySelector('iframe');
           if (iframe) {
             const player = new Player(iframe);
-            player.on('canplay', () => { // Changed 'loadeddata' to 'canplay'
+            // Using 'play' event: Other events like 'loaded', 'loadeddata', or 'canplay'
+            // were found to hide the loading screen prematurely on initial page loads,
+            // leading to a white screen before the video was visible. 'play' ensures
+            // the video has actually started playback. If loading still feels long,
+            // it's likely due to video size/delivery or player init time.
+            player.on('play', () => { // Changed 'canplay' back to 'play'
               document.dispatchEvent(new Event('vimeoLoaded')); // Écoute l'événement 'ready'
             });
           } else {
