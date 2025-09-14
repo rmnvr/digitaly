@@ -1,6 +1,5 @@
 'use client';
 
-import { useRef } from 'react';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
 
@@ -111,6 +110,7 @@ export default function LegalPage() {
           </p>
         </section>
       </div>
+      <Footer />
     </main>
   );
 }

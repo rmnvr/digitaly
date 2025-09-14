@@ -1,6 +1,5 @@
 'use client';
 
-import { useRef } from 'react';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
 
