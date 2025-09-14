@@ -7,7 +7,7 @@ interface VideoLightboxProps {
     onClose: () => void;
     videoId?: string;
     title?: string;
-    footerRef?: React.RefObject<HTMLDivElement>;
+    contactRef?: React.RefObject<HTMLDivElement>;
 }
 
 // Create a mapping for the components
@@ -27,7 +27,7 @@ const VideoLightbox: React.FC<VideoLightboxProps> = ({
     onClose,
     videoId,
     title,
-    footerRef,
+    contactRef,
 }) => {
     useEffect(() => {
         if (isOpen) {
@@ -48,8 +48,8 @@ const VideoLightbox: React.FC<VideoLightboxProps> = ({
 
     const handleProjectClick = () => {
         onClose();
-        if (footerRef?.current) {
-            footerRef.current.scrollIntoView({ behavior: 'smooth' });
+        if (contactRef?.current) {
+            contactRef.current.scrollIntoView({ behavior: 'smooth' });
         }
     };
 

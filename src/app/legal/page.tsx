@@ -5,7 +5,6 @@ import Footer from '@/components/Footer';
 import Link from 'next/link';
 
 export default function LegalPage() {
-  const footerRef = useRef<HTMLDivElement>(null!);
 
   return (
     <main className="min-h-screen bg-white">
@@ -112,7 +111,6 @@ export default function LegalPage() {
           </p>
         </section>
       </div>
-      <Footer ref={footerRef} />
     </main>
   );
 }

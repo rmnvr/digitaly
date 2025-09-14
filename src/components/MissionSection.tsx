@@ -1,11 +1,9 @@
 'use client';
 
 import Image from 'next/image';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, forwardRef } from 'react';
 
-interface MissionSectionProps {
-  footerRef: React.RefObject<HTMLDivElement>;
-}
+interface MissionSectionProps {}
 
 const commercialList = [
   "Film promotionnel",
@@ -21,13 +19,13 @@ const brandList = [
   "Formations"
 ]
 
-const MissionSection: React.FC<MissionSectionProps> = ({ footerRef }) => {
+const MissionSection = forwardRef<HTMLDivElement, MissionSectionProps>((props, ref) => {
   const sectionRef = useRef<HTMLElement>(null);
   const [isVisible, setIsVisible] = useState(false);
 
   const handleClick = () => {
-    if (footerRef.current) {
-      footerRef.current.scrollIntoView({ behavior: 'smooth' });
+    if (ref && typeof ref === 'object' && ref.current) {
+      ref.current.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
@@ -49,6 +47,18 @@ const MissionSection: React.FC<MissionSectionProps> = ({ footerRef }) => {
     }
 
     return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const scriptId = "iclosed-widget-script";
+    if (!document.getElementById(scriptId)) {
+      const script = document.createElement("script");
+      script.id = scriptId;
+      script.type = "text/javascript";
+      script.src = "https://app.iclosed.io/assets/widget.js";
+      script.async = true;
+      document.body.appendChild(script);
+    }
   }, []);
 
   return (
@@ -156,8 +166,17 @@ const MissionSection: React.FC<MissionSectionProps> = ({ footerRef }) => {
         </div>
 
       </div>
+        <div
+          ref={ref}
+          className="iclosed-widget mt-10"
+          data-url="https://app.iclosed.io/e/Digitaly/RDV"
+          title="Vous avez un projet vidéo ?"
+          style={{ width: "100%", height: "620px" }}
+        />
     </section>
   );
-};
+});
+
+MissionSection.displayName = 'MissionSection';
 
 export default MissionSection;

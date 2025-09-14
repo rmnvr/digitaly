@@ -1,13 +1,13 @@
 'use client';
 interface NavigationProps {
-  footerRef: React.RefObject<HTMLDivElement>;
+  contactRef: React.RefObject<HTMLDivElement>;
 }
 
-const Navigation: React.FC<NavigationProps> = ({ footerRef }) => {
+const Navigation: React.FC<NavigationProps> = ({ contactRef }) => {
 
   const handleClick = () => {
-    if (footerRef.current) {
-      footerRef.current.scrollIntoView({ behavior: 'smooth' });
+    if (contactRef.current) {
+      contactRef.current.scrollIntoView({ behavior: 'smooth' });
     }
   };
 

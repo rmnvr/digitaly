@@ -2,14 +2,13 @@
 
 import Link from 'next/link';
 import { FaInstagram, FaLinkedinIn, FaYoutube } from 'react-icons/fa';
-import React, { forwardRef } from 'react';
+import React from 'react';
 
-const Footer = forwardRef<HTMLDivElement, React.HTMLProps<HTMLDivElement>>((props, ref) => {
-
+const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer ref={ref} className="bg-primary text-white py-20 mt-12">
+    <footer className="bg-primary text-white py-20 mt-12">
       <div className="container mx-auto px-4">
         <div className='flex flex-col lg:flex-row lg:justify-between gap-12'>
           <div className="flex flex-col md:grid md:grid-cols-3 gap-8">
@@ -75,9 +74,6 @@ const Footer = forwardRef<HTMLDivElement, React.HTMLProps<HTMLDivElement>>((prop
       </div>
     </footer>
   );
-});
-
-// Set display name for better debugging
-Footer.displayName = 'Footer';
+};
 
 export default Footer;

@@ -10,17 +10,17 @@ import LogoBanner from '@/components/LogoBanner';
 import PromisesSection from '@/components/PromisesSection';
 
 export default function Home() {
-  const footerRef = useRef<HTMLDivElement>(null!);
+  const contactRef = useRef<HTMLDivElement>(null!);
 
   return (
     <main>
-      <HeroSection footerRef={footerRef} />
+      <HeroSection contactRef={contactRef} />
       <LogoBanner />
       <PromisesSection />
-      <Portfolio footerRef={footerRef} />
+      <Portfolio contactRef={contactRef} />
       <YoutubeLink />
-      <MissionSection footerRef={footerRef} />
-      <Footer ref={footerRef} />
+      <MissionSection ref={contactRef} />
+      <Footer />
     </main>
   );
 }

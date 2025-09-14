@@ -50,10 +50,10 @@ const VimeoPlayer = dynamic(() => Promise.resolve(() => {
 }), { ssr: false });
 
 interface HeroSectionProps {
-  footerRef: React.RefObject<HTMLDivElement>; // Ajouter la prop pour la référence
+  contactRef: React.RefObject<HTMLDivElement>; // Ajouter la prop pour la référence
 }
 
-const HeroSection = ({ footerRef }: HeroSectionProps) => {
+const HeroSection = ({ contactRef }: HeroSectionProps) => {
   const [isLoading, setIsLoading] = useState(true);
   const [isLoadingHidden, setIsLoadingHidden] = useState(false);
   const [showLoader, setShowLoader] = useState(true);
@@ -107,7 +107,7 @@ const HeroSection = ({ footerRef }: HeroSectionProps) => {
       </div>
 
       <div className="absolute inset-0 flex flex-col items-center justify-center px-4 md:px-8">
-        <Navigation footerRef={footerRef} />
+        <Navigation contactRef={contactRef} />
         <Image
           src="/images/digitaly_logo.svg"
           alt="Digitaly Logo"

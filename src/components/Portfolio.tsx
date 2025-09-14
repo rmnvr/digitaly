@@ -13,10 +13,10 @@ interface VideoInfo {
 }
 
 interface PortfolioProps {
-  footerRef: React.RefObject<HTMLDivElement>;
+  contactRef: React.RefObject<HTMLDivElement>;
 }
 
-const Portfolio: React.FC<PortfolioProps> = ({ footerRef }) => {
+const Portfolio: React.FC<PortfolioProps> = ({ contactRef }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isHovered, setIsHovered] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
@@ -299,7 +299,7 @@ const Portfolio: React.FC<PortfolioProps> = ({ footerRef }) => {
         onClose={() => setShowLightbox(false)}
         videoId={selectedVideo?.id}
         title={selectedVideo?.title}
-        footerRef={footerRef as React.RefObject<HTMLDivElement>}
+        contactRef={contactRef as React.RefObject<HTMLDivElement>}
       />
 
     </div>

@@ -5,7 +5,6 @@ import Footer from '@/components/Footer';
 import Link from 'next/link';
 
 export default function TermsPage() {
-  const footerRef = useRef<HTMLDivElement>(null!);
 
   return (
     <main className="min-h-screen bg-white">
@@ -108,7 +107,7 @@ export default function TermsPage() {
           </p>
         </section>
       </div>
-      <Footer ref={footerRef} />
+      <Footer />
     </main>
   );
 } 
