@@ -3,8 +3,6 @@
 import Image from 'next/image';
 import React, { useEffect, useRef, useState, forwardRef } from 'react';
 
-interface MissionSectionProps {}
-
 const commercialList = [
   "Film promotionnel",
   "Spot publicitaire",
@@ -19,7 +17,7 @@ const brandList = [
   "Formations"
 ]
 
-const MissionSection = forwardRef<HTMLDivElement, MissionSectionProps>((props, ref) => {
+const MissionSection = forwardRef<HTMLDivElement>((props, ref) => {
   const sectionRef = useRef<HTMLElement>(null);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -168,7 +166,7 @@ const MissionSection = forwardRef<HTMLDivElement, MissionSectionProps>((props, r
       </div>
         <div
           ref={ref}
-          className="iclosed-widget mt-10"
+          className="iclosed-widget"
           data-url="https://app.iclosed.io/e/Digitaly/RDV"
           title="Vous avez un projet vidéo ?"
           style={{ width: "100%", height: "620px" }}
