@@ -166,7 +166,7 @@ const MissionSection = forwardRef<HTMLDivElement>((props, ref) => {
       </div>
         <div
           ref={ref}
-          className="iclosed-widget"
+          className="iclosed-widget mt-10"
           data-url="https://app.iclosed.io/e/Digitaly/RDV"
           title="Vous avez un projet vidéo ?"
           style={{ width: "100%", height: "620px" }}
