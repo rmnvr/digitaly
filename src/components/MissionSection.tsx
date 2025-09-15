@@ -4,17 +4,20 @@ import Image from 'next/image';
 import React, { useEffect, useRef, useState, forwardRef } from 'react';
 
 const commercialList = [
-  "Film promotionnel",
-  "Spot publicitaire",
-  "Témoignages clients",
-  "Contenus réseaux sociaux"
+  "Rédaction et validation du script et des images à filmer selon votre activité et vos objectifs",
+  "Tournage en 1/2 journée dans vos locaux",
+  "Avec acteur(s) ou vos collaborateurs",
+  "Musique et sound design",
+  "Livraison sous 10 jours",
+  "Modifications illimitées"
 ]
 
 const brandList = [
-  "Film culture d'entreprise",
-  "Portraits collaborateurs & métiers",
-  "Communication interne",
-  "Formations"
+  "Rédaction de 10 scripts pour votre activité et vos objectifs",
+  "Tournage en 1/2 journée dans vos locaux",
+  "Avec acteur(s) ou vos collaborateurs",
+  "Livraison sous 10 jours",
+  "Modifications illimitées"
 ]
 
 const MissionSection = forwardRef<HTMLDivElement>((props, ref) => {
@@ -85,21 +88,20 @@ const MissionSection = forwardRef<HTMLDivElement>((props, ref) => {
             {/* Right Content */}
             <div>
               <span className="inline-block px-4 py-2 rounded-full text-sm border border-[#0A0B2E]/20 text-[#0A0B2E] mb-4 uppercase hover:bg-[#0A0B2E] hover:text-white transition-colors duration-300">
-                Commerciale
+                Video presentation
               </span>
               <ul className="text-lg font-light text-[#0A0B2E]/70 leading-relaxed mb-8">
                 {
                   commercialList.map(listItem => {
-                    return (<li key={listItem} className="flex items-center">
-                      <span className="w-1 h-1 bg-[#0A0B2E]/50 rounded-full mr-2"></span>
+                    return (<li key={listItem} className="flex items-start">
+                      <span className="w-1 h-1 bg-[#0A0B2E]/50 rounded-full mr-2 flex-shrink-0 mt-3"></span>
                       {listItem}
                     </li>)
                   })
                 }
               </ul>
               <p className="text-lg font-normal text-[#0A0B2E]/70 leading-relaxed mb-8 space-y-2">
-                Renforcez votre image et votre notoriété,<br />
-                démarquez-vous et augmentez votre visibilité.
+                Nous mettons en valeur votre activité pour présenter, expliquer et vendre ce que vous faites. Idéal pour votre site web et générer plus de rendez-vous.
               </p>
               <div className="flex justify-left">
                 <button
@@ -120,20 +122,20 @@ const MissionSection = forwardRef<HTMLDivElement>((props, ref) => {
             {/* Left Content */}
             <div className="order-2 lg:order-1">
               <span className="inline-block px-4 py-2 rounded-full text-sm border border-[#0A0B2E]/20 text-[#0A0B2E] mb-4 uppercase hover:bg-[#0A0B2E] hover:text-white transition-colors duration-300">
-                Marque employeur
+                Reseaux sociaux              
               </span>
               <ul className="text-lg font-light text-[#0A0B2E]/70 leading-relaxed mb-8">
                 {
                   brandList.map(listItem => {
-                    return (<li key={listItem} className="flex items-center">
-                      <span className="w-1 h-1 bg-[#0A0B2E]/50 rounded-full mr-2"></span>
+                    return (<li key={listItem} className="flex items-start">
+                      <span className="w-1 h-1 bg-[#0A0B2E]/50 rounded-full mr-2 flex-shrink-0 mt-3"></span>
                       {listItem}
                     </li>)
                   })
                 }
               </ul>
               <p className="text-lg font-normal text-[#0A0B2E]/70 leading-relaxed mb-8 space-y-2">
-                Attirez des talents et fidélisez vos collaborateurs en les valorisant en vidéos.
+                On réalise des vidéos qui vous font exploser sur les réseaux sociaux.
               </p>
               <div className="flex justify-left">
                 <button
